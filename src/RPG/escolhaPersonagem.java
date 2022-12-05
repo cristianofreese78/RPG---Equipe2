@@ -3,9 +3,9 @@ package RPG;
 import java.util.Scanner;
 
 public class escolhaPersonagem<Personagem> {
-	Personagem1 p1 = new Personagem1();
+	Personagem1 p1 = new Personagem1(); ///Instância dos personagens que o jogador pode escolher
 	Personagem2 p2 = new Personagem2();
-	public int result = 0;
+	public int result = 0;// 1 para personagem 1 e 2 para personagem 2. Inícia com 0
 	public int escolhaPersonagem() {
 		
 		Scanner scan = new Scanner(System.in);
@@ -22,7 +22,7 @@ public class escolhaPersonagem<Personagem> {
 		
 	}
 	
-	public int escolhaPer() {
+	public int escolhaPer() { //retorna com o número do personagem
 		if(result == 1) {
 			return 1;
 		}else {
@@ -32,7 +32,7 @@ public class escolhaPersonagem<Personagem> {
 		
 
 	}
-	public int atributoMP() {
+	public int atributoMP() { // retorna o MP de cada personagem com base na escolha
 		if(result == 1) {
 			return p1.MP();
 		}else {
@@ -41,7 +41,7 @@ public class escolhaPersonagem<Personagem> {
 		}
 	}
 	
-	public int atributoAtaqueBasico(int result) {
+	public int atributoAtaqueBasico(int result) { // retorna o dano base do ataque básico com base an escolha
 		if(result == 1) {
 			return p1.ataqueBasico();
 		}else {
@@ -50,7 +50,7 @@ public class escolhaPersonagem<Personagem> {
 		}
 	}
 	
-	public int atributoAtaqueEspecial(int result) {
+	public int atributoAtaqueEspecial(int result) { // retorna o dano base do ataque especial com base na escolha.
 		if(result == 1) {
 			return p1.boladeFogo();
 		}else {
@@ -60,7 +60,7 @@ public class escolhaPersonagem<Personagem> {
 	}
 	
 	
-	public int atributoVida() {
+	public int atributoVida() { // retorna a vida base com base na escolha.
 		if(result == 1) {
 			return p1.vidaInicialSJogador1();
 		}else {

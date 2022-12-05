@@ -14,9 +14,9 @@ public class Batalha extends MainRpg{
 		escolhaPersonagem esc = new escolhaPersonagem();
 		Scanner scan = new Scanner(System.in);
 		Inimigo1 i1 = new Inimigo1();
-		int ataqueBasico= esc.atributoAtaqueBasico(escolhaPer) + upDano;
-		int ataqueEspecial = esc.atributoAtaqueEspecial(escolhaPer) + upDano;;
-		int danoAtaque;
+		int ataqueBasico= esc.atributoAtaqueBasico(escolhaPer); // retornar o valor do ataque básico do personagem escolhido
+		int ataqueEspecial = esc.atributoAtaqueEspecial(escolhaPer);// retornar o valor do ataque especial do personagem escolhido
+		int danoAtaque; // Dano Ataque é o dano base do personagem escolhido + o bônus por evoluir de nível
 		int MP = 0;
 		int dano = 0;
 		boolean flag = true; //Utilizar para controlar o switch caso o jogador selecione ataque especial sem ter MP ou uma opção inválida
@@ -27,8 +27,8 @@ public class Batalha extends MainRpg{
 			switch(escolherAtaque) {
 			case 1: {
 				
-				vidaInimigoInicial -= ataqueBasico - upDano;
-				danoAtaque = ataqueBasico + upDano;
+				danoAtaque = ataqueBasico + upDano; // Todos as variáveis que começam com "Up" são bônus conforme o jogador evolui de nível
+				vidaInimigoInicial -= danoAtaque; 
 				System.out.println("Você atacou com: Ataque Básico\nDano: "+ danoAtaque);
 				System.out.println("Vida do inimigo: "+ vidaInimigoInicial);
 				flag = true;
@@ -37,7 +37,7 @@ public class Batalha extends MainRpg{
 			case 2: {
 				if(mpJogador >0) {
 				danoAtaque = ataqueEspecial + upDano;
-				vidaInimigoInicial -= ataqueEspecial;
+				vidaInimigoInicial -= danoAtaque;
 				System.out.println("Você atacou com: Ataque Especial\nDano: "+ danoAtaque);
 				System.out.println("Vida do inimigo: "+ vidaInimigoInicial);
 				MP += 1;
@@ -57,7 +57,7 @@ public class Batalha extends MainRpg{
 			}
 			}
 			if (vidaInimigoInicial > 0 && flag == true) {
-				switch(gerador) {
+				switch(gerador) { // Gerador é utilizado como uma espécie de inteligência artifical para fazer o inimigo atacar, no momento ele retorna apenas 1 número pois o inimigo tem apenas 1 habilidade no momento.
 				case 1: {
 					System.out.println("O inimigo atacou com um ataque básico");
 					i1.ataqueBasico();

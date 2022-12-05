@@ -24,14 +24,14 @@ public class Personagem1 {
 		return 10;
 	}
 	public String atacarBasico() {
-		return ("Ataque Básico\nDano: "+ ataqueBasico());
+		return ("Ataque Básico");
 	}
 	
 	public String atacarSPCL() {
-		return ("Bola de fogo\nDano: "+ boladeFogo());
+		return ("Bola de fogo");
 	}
 	
-	public boolean evoluirNv(double exp, int expParaNivel) {
+	public boolean evoluirNv(double exp, int expParaNivel) { // Verifica se o personagem pode evoluir
 		if( exp >= expParaNivel) {
 			System.out.println("Parabéns você evoluiu de nível !");
 			return true;

@@ -24,11 +24,11 @@ public class Personagem2 {
 		return 9;
 	}
 	public String atacarBasico() {
-		return ("Ataque Básico\nDano: "+ ataqueBasico());
+		return ("Ataque Básico");
 	}
 	
 	public String atacarSPCL() {
-		return ("Golpe de espada\nDano: "+ golpeEspada());
+		return ("Golpe de espada");
 	}
 	
 	public boolean evoluirNv(double exp, int expParaNivel) {
