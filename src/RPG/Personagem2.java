@@ -8,7 +8,7 @@ public class Personagem2 {
     }
 	
 	public int MP() {
-		return 20;
+		return 10;
 	}
 	public int exp() {
 		return 0;
