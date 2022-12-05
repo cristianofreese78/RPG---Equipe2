@@ -2,11 +2,11 @@ package RPG;
 
 public class Inimigo1 {
 	
-	public double vidaInimigoInicial(){
+	public int vidaInimigoInicial(){
 		return 40;
 	}
 	
-	public double ataqueBasico() {
+	public int ataqueBasico() {
 		return 5;
 	}
 

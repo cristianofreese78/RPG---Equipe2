@@ -6,16 +6,19 @@ import java.util.Scanner;
 
 public class Batalha extends MainRpg{
 	
-	double danoBatalha;
-    double expBatalha;
+	int danoBatalha;
+    int expBatalha;
     int mpBatalha;
 	
-	public void batalha(double vida, double mpJogador,double exp, double vidaInimigoInicial, int gerador, int ataqueBasico, int ataqueEspecial) {
+	public void batalha(int vida, int mpJogador,int exp, int vidaInimigoInicial, int gerador,int upDano, int escolhaPer) {
+		escolhaPersonagem esc = new escolhaPersonagem();
 		Scanner scan = new Scanner(System.in);
 		Inimigo1 i1 = new Inimigo1();
-		Personagem1 p1 = new Personagem1();
+		int ataqueBasico= esc.atributoAtaqueBasico(escolhaPer) + upDano;
+		int ataqueEspecial = esc.atributoAtaqueEspecial(escolhaPer) + upDano;;
+		int danoAtaque;
 		int MP = 0;
-		double dano = 0;
+		int dano = 0;
 		boolean flag = true; //Utilizar para controlar o switch caso o jogador selecione ataque especial sem ter MP ou uma opção inválida
 		
 		while(vida > 0 && vidaInimigoInicial > 0) {
@@ -24,14 +27,18 @@ public class Batalha extends MainRpg{
 			switch(escolherAtaque) {
 			case 1: {
 				
-				vidaInimigoInicial -= ataqueBasico;
+				vidaInimigoInicial -= ataqueBasico - upDano;
+				danoAtaque = ataqueBasico + upDano;
+				System.out.println("Você atacou com: Ataque Básico\nDano: "+ danoAtaque);
 				System.out.println("Vida do inimigo: "+ vidaInimigoInicial);
 				flag = true;
 				break;
 			}
 			case 2: {
 				if(mpJogador >0) {
+				danoAtaque = ataqueEspecial + upDano;
 				vidaInimigoInicial -= ataqueEspecial;
+				System.out.println("Você atacou com: Ataque Especial\nDano: "+ danoAtaque);
 				System.out.println("Vida do inimigo: "+ vidaInimigoInicial);
 				MP += 1;
 				flag = true;
@@ -80,7 +87,7 @@ public class Batalha extends MainRpg{
 	public double Exp() {
 		return expBatalha;
 	}
-	public double MP() {
+	public int MP() {
 		return mpBatalha;
 	}
 

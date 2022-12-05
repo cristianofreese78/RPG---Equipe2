@@ -2,14 +2,15 @@ package RPG;
 
 public class Personagem1 {
 	
-    public double vidaInicialSJogador1(){
+	
+    public int vidaInicialSJogador1(){
     	return 100;
     }
 	
 	public int MP() {
 		return 10;
 	}
-	public double exp() {
+	public int exp() {
 		return 0;
 	}
 	public int nv() {
@@ -22,14 +23,12 @@ public class Personagem1 {
 	public int ataqueBasico() {
 		return 10;
 	}
-	public void atacarBasico() {
-		System.out.println("Ataque Básico");
-		System.out.println("Dano: " + ataqueBasico());
+	public String atacarBasico() {
+		return ("Ataque Básico\nDano: "+ ataqueBasico());
 	}
 	
-	public void atacarSPCL() {
-		System.out.println("Bola de fogo");
-		System.out.println("Dano: " + boladeFogo());
+	public String atacarSPCL() {
+		return ("Bola de fogo\nDano: "+ boladeFogo());
 	}
 	
 	public boolean evoluirNv(double exp, int expParaNivel) {
