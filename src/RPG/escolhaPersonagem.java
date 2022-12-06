@@ -6,6 +6,7 @@ public class escolhaPersonagem<Personagem> {
 	Personagem1 p1 = new Personagem1(); ///Instância dos personagens que o jogador pode escolher
 	Personagem2 p2 = new Personagem2();
 	public int result = 0;// 1 para personagem 1 e 2 para personagem 2. Inícia com 0
+	
 	public int escolhaPersonagem() {
 		
 		Scanner scan = new Scanner(System.in);
