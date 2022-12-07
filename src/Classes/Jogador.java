@@ -1,31 +1,58 @@
 package Classes;
 
-import Interfaces.AtaqueEspecial;
+public class Jogador extends AtaqueEspecial{
+	private int ptsExperiencia;
+	private int nvlJogador;
+	
+	public Jogador(String nmElementos, int ptsVida, int dnAtaqueBasico, String tpAtaqueEspecial, int dnAtaqueEspecial, int ptsExperiencia, int nvlPersonagem ) {
+		super();
+		this.setNome(nmElementos);
+		this.setPtsVida(ptsVida);
+		this.setDnAtaqueBasico(dnAtaqueBasico);
+		this.setTpAtaqueEspecial(tpAtaqueEspecial);
+		this.setDnAtaqueEspecial(dnAtaqueEspecial);
+		this.ptsExperiencia = ptsExperiencia;
+		this.nvlJogador = nvlPersonagem;
+	}
+	
+	public Jogador() {
+		super();
+	}
 
-public class Jogador extends Elementos implements AtaqueEspecial{
-	private int ptsEsperiencia;
-	private int nvlPersonagem;
-	private int dnAtaqueEspecial;
-	
-	public int getPtsEsperiencia() {
-		return ptsEsperiencia;
+
+
+	public int getPtsExperiencia() {
+		return ptsExperiencia;
 	}
-	public void setPtsEsperiencia(int ptsEsperiencia) {
-		this.ptsEsperiencia = ptsEsperiencia;
+	public void setPtsExperiencia(int ptsEsperiencia) {
+		this.ptsExperiencia = ptsEsperiencia;
 	}
-	public int getNvlPersonagem() {
-		return nvlPersonagem;
+	public int getNvlJogador() {
+		return nvlJogador;
 	}
-	public void setNvlPersonagem(int nvlPersonagem) {
-		this.nvlPersonagem = nvlPersonagem;
-	}
-	public int getDnAtaqueEspecial() {
-		return dnAtaqueEspecial;
-	}
-	public void setDnAtaqueEspecial(int dnAtaqueEspecial) {
-		this.dnAtaqueEspecial = dnAtaqueEspecial;
+	public void setNvlJogador(int nvlPersonagem) {
+		this.nvlJogador = nvlPersonagem;
 	}
 	
-	
+	@Override
+	public String toString() {
+		
+		StringBuffer stringBuffer = new StringBuffer();
+		stringBuffer.append("\nNome: ");
+		stringBuffer.append(this.getNome());
+		stringBuffer.append("\nPontos de Vida: ");
+		stringBuffer.append(this.getPtsVida());
+		stringBuffer.append("\nDano Ataque Básico: ");
+		stringBuffer.append(this.getDnAtaqueBasico());
+		stringBuffer.append("\nNível: ");
+		stringBuffer.append(this.getNvlJogador());
+		stringBuffer.append("\nExperiênica: ");
+		stringBuffer.append(this.getPtsExperiencia());
+		stringBuffer.append("\nDano Ataque Especial: ");
+		stringBuffer.append(this.getDnAtaqueEspecial());
+		stringBuffer.append("\nTipo Ataque Especial: ");
+		stringBuffer.append(this.getTpAtaqueEspecial());
+		return stringBuffer.toString();
+	}
 }
 
