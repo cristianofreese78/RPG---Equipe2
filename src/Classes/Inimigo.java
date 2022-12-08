@@ -25,4 +25,5 @@ public class Inimigo extends Elementos{
 		stringBuffer.append(this.getDnAtaqueBasico());
 		return stringBuffer.toString();
 	}
+	
 }

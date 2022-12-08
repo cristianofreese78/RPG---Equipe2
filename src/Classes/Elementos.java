@@ -24,5 +24,14 @@ public class Elementos{
 		this.dnAtaqueBasico = dnAtaqueBasico;
 	}
 	
-	
+	//Atualiza os atribuitos baseado no dano que o inimigo levou
+	//O operador op define se os valor será incrementado ou decrementado
+		public boolean atualizaDados(int dnTurno, char opDnTur) {
+					
+		if (opDnTur == 'd') this.setPtsVida(this.getPtsVida()-dnTurno);
+		else this.setPtsVida(this.getPtsVida()+dnTurno);
+		
+		if (this.getPtsVida() > 0) return true;
+		else return false;
+	}
 }

@@ -1,11 +1,18 @@
 package Classes;
 
-import java.util.Arrays;
-
 public class AtaqueEspecial extends Elementos{
 	private int dnAtaqueEspecial;
 	private String tpAtaqueEspecial;
+	private int mpJogador;
 		
+	
+	
+	public int getMpJogador() {
+		return mpJogador;
+	}
+	public void setMpJogador(int mpJogador) {
+		this.mpJogador = mpJogador;
+	}
 	public int getDnAtaqueEspecial() {
 		return dnAtaqueEspecial;
 	}

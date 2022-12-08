@@ -4,21 +4,23 @@ public class Jogador extends AtaqueEspecial{
 	private int ptsExperiencia;
 	private int nvlJogador;
 	
-	public Jogador(String nmElementos, int ptsVida, int dnAtaqueBasico, String tpAtaqueEspecial, int dnAtaqueEspecial, int ptsExperiencia, int nvlPersonagem ) {
+	
+	public Jogador(String nmElementos, int ptsVida, int dnAtaqueBasico, String tpAtaqueEspecial, int dnAtaqueEspecial, int ptsExperiencia, int nvlPersonagem, int mpPersonagem ) {
 		super();
 		this.setNome(nmElementos);
 		this.setPtsVida(ptsVida);
 		this.setDnAtaqueBasico(dnAtaqueBasico);
 		this.setTpAtaqueEspecial(tpAtaqueEspecial);
 		this.setDnAtaqueEspecial(dnAtaqueEspecial);
+		this.setMpJogador(mpPersonagem);
 		this.ptsExperiencia = ptsExperiencia;
 		this.nvlJogador = nvlPersonagem;
+
 	}
 	
 	public Jogador() {
 		super();
 	}
-
 
 
 	public int getPtsExperiencia() {
@@ -52,7 +54,27 @@ public class Jogador extends AtaqueEspecial{
 		stringBuffer.append(this.getDnAtaqueEspecial());
 		stringBuffer.append("\nTipo Ataque Especial: ");
 		stringBuffer.append(this.getTpAtaqueEspecial());
+		stringBuffer.append("\nPontos de Ataque Especial (MP): ");
+		stringBuffer.append(this.getMpJogador());		
 		return stringBuffer.toString();
+	}
+	
+	//Atualiza os atribuitos baseado no dano que o jogador levou, ganho de experiência e MP gasto na batalha
+	//Os operadores op definem se os valores serão incrementados ou decrementados
+	//Retorna true se jogador ainda tem vida ou false de morreu
+	public boolean atualizaDados(int dnTurno, char opDnTur, int ptsExpTurno, char opPtsExp, int mpGastTurno, char opMPGasTur) {
+		
+		if (opDnTur == 'd') this.setPtsVida(this.getPtsVida()-dnTurno);
+		else this.setPtsVida(this.getPtsVida()+dnTurno);
+		
+		if (opPtsExp == 'd') this.setPtsExperiencia(this.getPtsExperiencia()-ptsExpTurno);
+		else this.setPtsExperiencia(this.getPtsExperiencia()+ptsExpTurno);
+		
+		if (opMPGasTur == 'd') this.setMpJogador(this.getMpJogador()-mpGastTurno);
+		else this.setMpJogador(this.getMpJogador()+mpGastTurno);
+		
+		if (this.getPtsVida() > 0) return true;
+		else return false;
 	}
 }
 
