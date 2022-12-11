@@ -1,6 +1,7 @@
 package Classes;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JOptionPane;
 
@@ -10,13 +11,13 @@ public class MainTeste {
 	public static ArrayList<Jogador> carregaListaJogador()  {
 		ArrayList<Jogador> lstAuxJogador = new ArrayList<>();
 		
-		lstAuxJogador.add(new Jogador("Cavaleiro", 100, 10, "Golpe de Espada", 20, 0, 1, 10));
+		lstAuxJogador.add(new Jogador("Cavaleiro", 100, 10, "Golpe de Espada", 20, 0, 1, 10,0,0,0,0,0));
 		//Efeito: Sangramento - Causa 5 a mais de dano por rodada
-		lstAuxJogador.add(new Jogador("Samurai", 110, 9, "Lâmina Mortal", 18, 0, 1, 10));
+		lstAuxJogador.add(new Jogador("Samurai", 110, 9, "Lâmina Mortal", 18, 0, 1, 10,0,0,0,0,0));
 		//Efeito: Chance de dano Crítico - tem 25% de chance de causar um dano crítico dobrando o valor do seu ataque
-		lstAuxJogador.add(new Jogador("Monge", 90, 12, "Ataque Concentrado", 22, 0, 1, 10));
+		lstAuxJogador.add(new Jogador("Monge", 90, 12, "Ataque Concentrado", 22, 0, 1, 10,0,0,0,0,0));
 		//Efeito : Atordoamento - Tem 25% de chance de atordoar o inimigo fazendo com que o inimigo não ataque na próxima rodada
-		lstAuxJogador.add(new Jogador("Caçador", 95, 11, "Sedento por Luta", 19, 0, 1, 10));
+		lstAuxJogador.add(new Jogador("Caçador", 95, 11, "Sedento por Luta", 19, 0, 1, 10,0,0,0,0,0));
 		//Efeito : Recuperação de vida - Recupera 10% do dano causado.
 		
 		return lstAuxJogador;
@@ -37,14 +38,15 @@ public class MainTeste {
 		return lstAuxInimigo;
 	}
 	
+	
 	//Cadastro de chefoes no array list listaChefao utilizando construtor
 	public static ArrayList<Chefao> carregaListaChefao()  {
 		ArrayList<Chefao> lstAuxChefao = new ArrayList<>();
 		
-		lstAuxChefao.add(new Chefao("Bárbaro", 60, 30, "Padrão", 40));
-		lstAuxChefao.add(new Chefao("Ancião", 80, 40, "Padrão", 55));
-		lstAuxChefao.add(new Chefao("Rei Esqueleto", 110, 50, "Passiva Fúria do Rei", 60));
- 		//Efeito : PASSIVA- FURIA DO REI - A cada turno o REI DESTRUÍDO AUMENTA EM 10% o seu dano.
+		lstAuxChefao.add(new Chefao("Bárbaro", 80, 30, "Padrão", 40));
+		lstAuxChefao.add(new Chefao("Ancião", 100, 40, "Padrão", 55));
+		lstAuxChefao.add(new Chefao("Rei Esqueleto", 150, 50, "Passiva Fúria do Rei", 60));
+ 		//Efeito : PASSIVA- FURIA DO REI - A cada turno o REI ESQUELETO AUMENTA EM 10% o seu dano.
 		
 		return lstAuxChefao;
 	}
@@ -65,73 +67,103 @@ public class MainTeste {
 				if (res.toString().equals(lstJogador.get(i).getNome())) jogAux = lstJogador.get(i);
 			}
 		}
-		
 		return jogAux;
+		
 	}
+	
+	public static int expParaNivel(int nv) { // cálculo de experiência para evoluir de nível
+	    return (int) Math.floor(100 * Math.pow(nv, 1.5));
+	}
+	
+
 
 	public static void main(String[] args) {
 		ArrayList<Jogador> listaJogador =  new ArrayList<>();
 		ArrayList<Inimigo> listaInimigo =  new ArrayList<>();		
 		ArrayList<Chefao> listaChefao =  new ArrayList<>();
 		Jogador jogador;
+		Batalhas ba = new Batalhas();
+		BatalhasChefao bac = new BatalhasChefao();
 		
 		listaJogador = carregaListaJogador();
 		listaInimigo = carregaListaInimigo();
 		listaChefao = carregaListaChefao();
 		
+		
+	
+		
 		//Dados inicais do jogador
-		jogador = escolheJogador(listaJogador); System.out.println(jogador.toString());
+		jogador = escolheJogador(listaJogador); //System.out.println(jogador.toString());
+		while(listaInimigo.size() > 0 && jogador.getPtsVida() > 0 ) {
+			Random gerador = new Random();
+			int escolhaArray = gerador.nextInt(listaInimigo.size());
+			Inimigo inimigo = listaInimigo.get(escolhaArray); System.out.println(inimigo.toString());
+			
+			ba.batalha(jogador,inimigo);
+			listaInimigo.remove(escolhaArray);
+			System.out.println("VIDA DO JOGADOR: "+jogador.getPtsVida());
+			System.out.println("MP DO JOGADOR: "+jogador.getMpJogador());
+			System.out.println("EXP DO JOGADOR: "+jogador.getPtsExperiencia());
+			System.out.println("NÍVEL DO JOGADOR: "+jogador.getNvlJogador());
+			System.out.println("QUANTIDADE DE POÇÕES: "+jogador.getPocao());
+			System.out.println("====================");
+		}
 		
+		bac.batalha(jogador,listaChefao.get(0));
+		
+		System.out.println("FIM");
 		//Jogador sofreu 10 de dano, aumenta 1 nivel de experiencia, utilizou um ataque especial
-		jogador.atualizaDados(10, 'd', 1, 's', 1, 'd'); System.out.println(jogador.toString());
-		
-		//Jogador sofreu 25 de dano, aumenta 0 nivel de experiencia, não utilizou um ataque especial
-		jogador.atualizaDados(25, 'd', 0, 's', 0, 'd'); System.out.println(jogador.toString());
-		
-		//Jogador recuperou 30 de dano, aumenta 1 nivel de experiencia, utilizou um ataque especial
-		jogador.atualizaDados(30, 's', 1, 's', 1, 'd'); System.out.println(jogador.toString());
-		
-		//Jogador sofreu um dano critico de 100, aumenta 0 nivel de experiencia, não utilizou um ataque especial
-		//Teste de condição para verificar se o personagem está vivo
-		if (jogador.atualizaDados(90, 'd', 0, 's', 0, 'd')) 
-			System.out.println(jogador.getNome() + " está vivo");
-		else System.out.println(jogador.getNome() + " morreu");
-		System.out.println(jogador.toString());
-		
-		
-		//Dados inicais do inimigo
-		Inimigo inimigo = listaInimigo.get(0); System.out.println(inimigo.toString());
-		
-		//Inimigo sofreu 10 de dano
-		inimigo.atualizaDados(10, 'd'); System.out.println(inimigo.toString());
-				
-		//Inimigo recuperou 5 de dano
-		inimigo.atualizaDados(5, 's'); System.out.println(inimigo.toString());
-		
-		//Inimigo sofreu um dano de 20
-		//Teste de condição para verificar se o inimigo está vivo
-		if (inimigo.atualizaDados(20, 'd')) 
-			System.out.println(inimigo.getNome() + " está vivo");
-		else System.out.println(inimigo.getNome() + " morreu");
-		System.out.println(inimigo.toString());
-		
-		
-		//Dados inicais do chefao
-		Chefao chefao = listaChefao.get(0); System.out.println(chefao.toString());
-				
-		//Inimigo sofreu 30 de dano
-		chefao.atualizaDados(30, 'd'); System.out.println(chefao.toString());
-						
-		//Inimigo sofreu 10 de dano
-		chefao.atualizaDados(10, 'd'); System.out.println(chefao.toString());
-		
-		//Chefao sofreu um dano de 80
-		//Teste de condição para verificar se o chefao está vivo
-		if (chefao.atualizaDados(80, 'd')) 
-			System.out.println(chefao.getNome() + " está vivo");
-		else System.out.println(chefao.getNome() + " morreu");
-		System.out.println(chefao.toString());
-		
+		/*
+		 * jogador.atualizaDados(10, 'd', 1, 's', 1, 'd');
+		 * System.out.println(jogador.toString());
+		 * 
+		 * //Jogador sofreu 25 de dano, aumenta 0 nivel de experiencia, não utilizou um
+		 * ataque especial jogador.atualizaDados(25, 'd', 0, 's', 0, 'd');
+		 * System.out.println(jogador.toString());
+		 * 
+		 * //Jogador recuperou 30 de dano, aumenta 1 nivel de experiencia, utilizou um
+		 * ataque especial jogador.atualizaDados(30, 's', 1, 's', 1, 'd');
+		 * System.out.println(jogador.toString());
+		 * 
+		 * //Jogador sofreu um dano critico de 100, aumenta 0 nivel de experiencia, não
+		 * utilizou um ataque especial //Teste de condição para verificar se o
+		 * personagem está vivo if (jogador.atualizaDados(90, 'd', 0, 's', 0, 'd'))
+		 * System.out.println(jogador.getNome() + " está vivo"); else
+		 * System.out.println(jogador.getNome() + " morreu");
+		 * System.out.println(jogador.toString());
+		 * 
+		 * 
+		 * //Dados inicais do inimigo System.out.println("-----Inimigo escolhido");
+		 * 
+		 * 
+		 * //Inimigo sofreu 10 de dano inimigo.atualizaDados(10, 'd');
+		 * System.out.println(inimigo.toString());
+		 * 
+		 * //Inimigo recuperou 5 de dano inimigo.atualizaDados(5, 's');
+		 * System.out.println(inimigo.toString());
+		 * 
+		 * //Inimigo sofreu um dano de 20 //Teste de condição para verificar se o
+		 * inimigo está vivo if (inimigo.atualizaDados(20, 'd'))
+		 * System.out.println(inimigo.getNome() + " está vivo"); else
+		 * System.out.println(inimigo.getNome() + " morreu");
+		 * System.out.println(inimigo.toString());
+		 * 
+		 * 
+		 * //Dados inicais do chefao Chefao chefao = listaChefao.get(0);
+		 * System.out.println(chefao.toString());
+		 * 
+		 * //Inimigo sofreu 30 de dano chefao.atualizaDados(30, 'd');
+		 * System.out.println(chefao.toString());
+		 * 
+		 * //Inimigo sofreu 10 de dano chefao.atualizaDados(10, 'd');
+		 * System.out.println(chefao.toString());
+		 * 
+		 * //Chefao sofreu um dano de 80 //Teste de condição para verificar se o chefao
+		 * está vivo if (chefao.atualizaDados(80, 'd'))
+		 * System.out.println(chefao.getNome() + " está vivo"); else
+		 * System.out.println(chefao.getNome() + " morreu");
+		 * System.out.println(chefao.toString());
+		 */
 		
 		
 		
