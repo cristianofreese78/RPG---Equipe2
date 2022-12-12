@@ -13,7 +13,7 @@ public class MainTeste {
 		
 		lstAuxJogador.add(new Jogador("Cavaleiro", 100, 10, "Golpe de Espada", 20, 0, 1, 20,0,0,0,0,0));
 		//Efeito: Sangramento - Causa 5 a mais de dano por rodada
-		lstAuxJogador.add(new Jogador("Samurai", 1100, 9, "Lâmina Mortal", 18, 0, 1, 20,0,0,0,0,0));
+		lstAuxJogador.add(new Jogador("Samurai", 110, 9, "Lâmina Mortal", 18, 0, 1, 20,0,0,0,0,0));
 		//Efeito: Chance de dano Crítico - tem 25% de chance de causar um dano crítico dobrando o valor do seu ataque
 		lstAuxJogador.add(new Jogador("Monge", 90, 12, "Ataque Concentrado", 22, 0, 1, 20,0,0,0,0,0));
 		//Efeito : Atordoamento - Tem 25% de chance de atordoar o inimigo fazendo com que o inimigo não ataque na próxima rodada
@@ -48,6 +48,19 @@ public class MainTeste {
 		lstAuxInimigo2.add(new Inimigo("Duende", 60, 15));
 		lstAuxInimigo2.add(new Inimigo("Globin", 70, 22));
 		lstAuxInimigo2.add(new Inimigo("Espantalho Almadiçoado", 80, 15));
+ 		
+		return lstAuxInimigo2;
+	}
+	public static ArrayList<Inimigo> carregaListaInimigo3()  {
+		ArrayList<Inimigo> lstAuxInimigo2 = new ArrayList<>();
+		
+		lstAuxInimigo2.add(new Inimigo("Slime", 75, 10));
+		lstAuxInimigo2.add(new Inimigo("Slime de lama", 100, 23));
+		lstAuxInimigo2.add(new Inimigo("Lobisomen", 120, 45));
+		lstAuxInimigo2.add(new Inimigo("Zumbi", 100, 33));
+		lstAuxInimigo2.add(new Inimigo("Duende", 90, 23));
+		lstAuxInimigo2.add(new Inimigo("Globin", 105, 35));
+		lstAuxInimigo2.add(new Inimigo("Espantalho Almadiçoado", 80, 25));
  		
 		return lstAuxInimigo2;
 	}
@@ -95,6 +108,7 @@ public class MainTeste {
 		ArrayList<Jogador> listaJogador =  new ArrayList<>();
 		ArrayList<Inimigo> listaInimigo =  new ArrayList<>();
 		ArrayList<Inimigo> listaInimigo2 =  new ArrayList<>();
+		ArrayList<Inimigo> listaInimigo3 =  new ArrayList<>();
 		ArrayList<Chefao> listaChefao =  new ArrayList<>();
 		Jogador jogador;
 		Batalhas ba = new Batalhas();
@@ -103,6 +117,7 @@ public class MainTeste {
 		listaJogador = carregaListaJogador();
 		listaInimigo = carregaListaInimigo();
 		listaInimigo2 = carregaListaInimigo2();
+		listaInimigo2 = carregaListaInimigo3();
 		listaChefao = carregaListaChefao();
 		
 		
@@ -140,9 +155,11 @@ public class MainTeste {
 			
 			
 		}
-		System.out.println("Chefão 2");
-		bac.batalha(jogador,listaChefao.get(1));
 		
+		bac.batalha(jogador,listaChefao.get(1));
+		while(listaInimigo3.size() > 0 && jogador.getPtsVida() > 0 ) {
+			
+		}
 		System.out.println("FIM");
 		//Jogador sofreu 10 de dano, aumenta 1 nivel de experiencia, utilizou um ataque especial
 		/*
