@@ -20,6 +20,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.UIManager;
+import java.awt.Window.Type;
 
 public class Tela extends JFrame {
 
@@ -45,6 +46,7 @@ public class Tela extends JFrame {
 	 * Create the frame.
 	 */
 	public Tela() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -152,7 +154,7 @@ public class Tela extends JFrame {
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.setToolTipText("Atacar");
 		btnNewButton_1.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\playIcon2.png"));
-		btnNewButton_1.setBounds(305, 5, 26, 26);
+		btnNewButton_1.setBounds(305, 3, 30, 30);
 		panel_2.add(btnNewButton_1);
 		
 		JPanel panel_2_1 = new JPanel();
