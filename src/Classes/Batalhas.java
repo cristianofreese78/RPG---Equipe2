@@ -67,15 +67,16 @@ public class Batalhas {
 		boolean flag = true;
 		
 		System.out.println("----------------A vida do jogador é: "+vida);
-		System.out.println("----------------O Mp do jogador é: "+mpAtual);
+		System.out.println("----------------O Mp do jogador é: "+jogador.getMpJogador());
 		System.out.println("----------------O Nível do jogador é: "+nivel);
 		System.out.println("----------------O nome do inimigo é: "+inimigo.getNome());
 		System.out.println("----------------A vida do inimigo escolhido é: "+inimigo.getPtsVida());
-		while(vida > 0 && vidaInimigo > 0) {
+		while(vida > 0 && vidaInimigo > 0 && jogador.getPtsVida()>0 ) {
 			jogador.setAtordoamento(0);
 			jogador.setCritico(0);
 			jogador.setSangramento(0);
 			jogador.setSedento(0);
+			jogador.setMpJogador(mpAtual);
 			System.out.println("(1) Aperte 1 para ataque básico (2) Aperte 2 para ataque especial: ");
 			int escolherAtaque = scan.nextInt();
 			switch(escolherAtaque) {
@@ -92,13 +93,15 @@ public class Batalhas {
 				break;
 			}
 			case 2: {
-			if(mpAtual > 0) {
+			if(jogador.getMpJogador() > 0) {
 				
 				vidaInimigo -= jogador.getDnAtaqueEspecial(); 
+				mpAtual -= 1;
 				System.out.println("Você atacou com: Ataque Especial\nDano: "+ jogador.getDnAtaqueEspecial());
-				
-				
+				numeroEscolhido = calcularChance();
 				int passiva = passivas(jogador,inimigo,numeroEscolhido,jogador.getAtordoamento(),critico);
+				System.out.println("MP ATUAL É:" +mpAtual);
+				jogador.setMpJogador(mpAtual);
 				if (jogador.getCritico() == 1) {
 					vidaInimigo -= jogador.getDnAtaqueEspecial();
 				}
@@ -147,7 +150,6 @@ public class Batalhas {
 		System.out.println("Sua Experiência após a batalha: "+exp);
 		System.out.println("Você gastou: "+mpGasto+" MP nesta batalha");
 		jogador.setPtsVida(vida);
-		jogador.setMpJogador(mpAtual);
 		jogador.setPtsExperiencia(exp);
 		numeroEscolhido = calcularChance();
 		if(numeroEscolhido <= 20) {
@@ -159,7 +161,7 @@ public class Batalhas {
 			System.out.println("Parabéns você evoluiu de nível !");
 			nivel += 1;
 			jogador.setPtsVida((int) (jogador.getPtsVida()* 1.1 + (nivel*1.5)));
-			jogador.setMpJogador(mpAtual+2);
+			jogador.setMpJogador(jogador.getMpJogador()+2);
 			jogador.setDnAtaqueBasico((int)(jogador.getDnAtaqueBasico()* 1.1 + (nivel*1.5)));
 			jogador.setDnAtaqueEspecial((int)(jogador.getDnAtaqueEspecial()* 1.1 + (nivel*1.5)));
 			System.out.println("Nível: "+nivel);
@@ -195,6 +197,7 @@ public class Batalhas {
 		}
 		}
 		if(vida<=0) {
+			jogador.setPtsVida(vida);
 			System.out.println("Você Morreu!");
 		}
 			}

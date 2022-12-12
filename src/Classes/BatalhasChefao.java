@@ -35,6 +35,7 @@ public class BatalhasChefao {
 			}
 		}else if(jogador.getNome() == "Monge"){
 			if(numeroEscolhido <= 25) {
+				System.out.println("O NÚMERO ESCOLHIDO FOI: "+numeroEscolhido);
 			System.out.println("O Monge acertou um atordoamento !");
 			System.out.println("O Chefão não atacará na próxima rodada");
 			jogador.setAtordoamento(1);
@@ -71,15 +72,16 @@ public class BatalhasChefao {
 		
 		System.out.println("Você está enfrentando um chefão. Boa sorte!");
 		System.out.println("----------------A vida do jogador é: "+vida);
-		System.out.println("----------------O Mp do jogador é: "+mpAtual);
+		System.out.println("----------------O Mp do jogador é: "+jogador.getMpJogador());
 		System.out.println("----------------O Nível do jogador é: "+nivel);
 		System.out.println("----------------O nome do Chefão é é: "+chefao.getNome());
 		System.out.println("----------------A vida do Chefão é: "+chefao.getPtsVida());
-		while(vida > 0 && vidaChefao > 0) {
+		while(vida > 0 && vidaChefao > 0 && jogador.getPtsVida()>0) {
 			jogador.setAtordoamento(0);
 			jogador.setCritico(0);
 			jogador.setSangramento(0);
 			jogador.setSedento(0);
+			jogador.setMpJogador(mpAtual);
 			System.out.println("(1) Aperte 1 para ataque básico (2) Aperte 2 para ataque especial: ");
 			int escolherAtaque = scan.nextInt();
 			switch(escolherAtaque) {
@@ -96,16 +98,18 @@ public class BatalhasChefao {
 				break;
 			}
 			case 2: {
-			if(mpAtual > 0) {
+			if(jogador.getMpJogador() > 0) {
 				
 				vidaChefao -= jogador.getDnAtaqueEspecial(); 
+				mpAtual -= 1;
 				System.out.println("Você atacou com: Ataque Especial\nDano: "+ jogador.getDnAtaqueEspecial());
 				
-				
+				numeroEscolhido = calcularChance();
 				int passiva = passivas(jogador,chefao,numeroEscolhido,jogador.getAtordoamento(),critico);
+				System.out.println("MP ATUAL É: " +mpAtual);
+				jogador.setMpJogador(mpAtual);
 				if (jogador.getCritico() == 1) {
 					vidaChefao -= jogador.getDnAtaqueEspecial();
-					System.out.println("Vida do chefão após CRÍTICO: "+vidaChefao);
 				}
 				if (jogador.getSangramento() == 1) {
 					vidaChefao -= 5;
@@ -161,9 +165,8 @@ public class BatalhasChefao {
 		System.out.println("Sua Experiência após a batalha: "+exp);
 		System.out.println("Você gastou: "+mpGasto+" MP nesta batalha");
 		jogador.setPtsVida(vida);
-		jogador.setMpJogador(mpAtual);
 		jogador.setPtsExperiencia(exp);
-		
+		numeroEscolhido = calcularChance();
 		if(numeroEscolhido <= 20) {
 			System.out.println("Você ganhou uma poção de cura!");
 			qtdPocao += 1;
@@ -173,7 +176,7 @@ public class BatalhasChefao {
 			System.out.println("Parabéns você evoluiu de nível !");
 			nivel += 1;
 			jogador.setPtsVida((int) (jogador.getPtsVida()* 1.1 + (nivel*1.5)));
-			jogador.setMpJogador(mpAtual+2);
+			jogador.setMpJogador(jogador.getMpJogador()+2);
 			jogador.setDnAtaqueBasico((int)(jogador.getDnAtaqueBasico()* 1.1 + (nivel*1.5)));
 			jogador.setDnAtaqueEspecial((int)(jogador.getDnAtaqueEspecial()* 1.1 + (nivel*1.5)));
 			System.out.println("Nível: "+nivel);
@@ -209,6 +212,7 @@ public class BatalhasChefao {
 		}
 		}
 		if(vida<= 0) {
+			jogador.setPtsVida(vida);
 			System.out.println("Você morreu!");
 		}
 			}
