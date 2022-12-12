@@ -116,6 +116,11 @@ public class Tela extends JFrame {
 		lblNewLabel_2_1.setBounds(10, 11, 113, 14);
 		panel_1.add(lblNewLabel_2_1);
 		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\pocaoIcon2.png"));
+		btnNewButton.setBounds(20, 48, 18, 18);
+		panel_1.add(btnNewButton);
+		
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\samuraiIcon3.png"));
 		lblNewLabel_3.setBounds(10, 95, 108, 108);
@@ -144,11 +149,11 @@ public class Tela extends JFrame {
 		rdbtnAtaqueEspecial.setBounds(131, 7, 163, 23);
 		panel_2.add(rdbtnAtaqueEspecial);
 		
-		JLabel lblNewLabel_5 = new JLabel("New label");
-		lblNewLabel_5.setToolTipText("Atacar");
-		lblNewLabel_5.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\playIcon3.png"));
-		lblNewLabel_5.setBounds(300, 3, 28, 30);
-		panel_2.add(lblNewLabel_5);
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setToolTipText("Atacar");
+		btnNewButton_1.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\playIcon2.png"));
+		btnNewButton_1.setBounds(305, 5, 26, 26);
+		panel_2.add(btnNewButton_1);
 		
 		JPanel panel_2_1 = new JPanel();
 		panel_2_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -183,7 +188,7 @@ public class Tela extends JFrame {
 		
 		JLabel lblNewLabel_6 = new JLabel("");
 		lblNewLabel_6.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\setaDireitaIcon2.jpg"));
-		lblNewLabel_6.setBounds(40, 11, 70, 39);
+		lblNewLabel_6.setBounds(15, 11, 116, 39);
 		panel_3.add(lblNewLabel_6);
 	}
 }
