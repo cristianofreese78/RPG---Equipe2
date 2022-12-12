@@ -158,7 +158,17 @@ public class MainTeste {
 		
 		bac.batalha(jogador,listaChefao.get(1));
 		while(listaInimigo3.size() > 0 && jogador.getPtsVida() > 0 ) {
-			
+			Random gerador = new Random();
+			int escolhaArray3 = gerador.nextInt(listaInimigo3.size());
+			Inimigo inimigo = listaInimigo3.get(escolhaArray3); System.out.println(inimigo.toString());
+			ba.batalha(jogador,inimigo);
+			listaInimigo2.remove(escolhaArray3);
+			System.out.println("VIDA DO JOGADOR: "+jogador.getPtsVida());
+			System.out.println("MP DO JOGADOR: "+jogador.getMpJogador());
+			System.out.println("EXP DO JOGADOR: "+jogador.getPtsExperiencia());
+			System.out.println("NÍVEL DO JOGADOR: "+jogador.getNvlJogador());
+			System.out.println("QUANTIDADE DE POÇÕES: "+jogador.getPocao());
+			System.out.println("====================");
 		}
 		System.out.println("FIM");
 		//Jogador sofreu 10 de dano, aumenta 1 nivel de experiencia, utilizou um ataque especial
