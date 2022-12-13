@@ -70,7 +70,7 @@ public class Batalhas {
 		System.out.println("----------------O Mp do jogador é: "+jogador.getMpJogador());
 		System.out.println("----------------O Nível do jogador é: "+nivel);
 		System.out.println("----------------O nome do inimigo é: "+inimigo.getNome());
-		System.out.println("----------------A vida do inimigo escolhido é: "+inimigo.getPtsVida());
+		System.out.println("----------------A vida do "+inimigo.getNome()+" é: "+inimigo.getPtsVida());
 		while(vida > 0 && vidaInimigo > 0 && jogador.getPtsVida()>0 ) {
 			jogador.setAtordoamento(0);
 			jogador.setCritico(0);
@@ -100,7 +100,7 @@ public class Batalhas {
 				System.out.println("Você atacou com: Ataque Especial\nDano: "+ jogador.getDnAtaqueEspecial());
 				numeroEscolhido = calcularChance();
 				int passiva = passivas(jogador,inimigo,numeroEscolhido,jogador.getAtordoamento(),critico);
-				System.out.println("MP ATUAL É:" +mpAtual);
+				System.out.println("MP: " +mpAtual);
 				jogador.setMpJogador(mpAtual);
 				if (jogador.getCritico() == 1) {
 					vidaInimigo -= jogador.getDnAtaqueEspecial();
@@ -119,7 +119,7 @@ public class Batalhas {
 				flag = true;
 				break;
 			}else {
-				System.out.println("Você não MP suficiente!");
+				System.out.println("Você não tem MP suficiente!");
 				flag = false;
 				break;
 			}

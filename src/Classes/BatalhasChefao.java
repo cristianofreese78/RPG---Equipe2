@@ -15,6 +15,15 @@ public class BatalhasChefao {
 		Random gerador = new Random();
 		return gerador.nextInt(2) + 1;
 	}
+	public static String passivaReiEsqueleto(Chefao chefao) {
+		if(chefao.getNome() == "Rei Esqueleto") {
+			chefao.setDnAtaqueBasico(chefao.getDnAtaqueBasico()*(int)1.10);
+			chefao.setDnAtaqueEspecial((int) ((int)chefao.getDnAtaqueEspecial()*1.1));
+			System.out.println("Passiva: Furia do Rei");
+			System.out.println("O Rei Esqueleto aumentou o seu dano em 10%!");
+		}
+		return null;
+	}
 	
 	public static int passivas(Jogador jogador, Chefao chefao, int numeroEscolhido, int atordoamento,int critico) {
 		int vida = jogador.getPtsVida();
@@ -35,7 +44,6 @@ public class BatalhasChefao {
 			}
 		}else if(jogador.getNome() == "Monge"){
 			if(numeroEscolhido <= 25) {
-				System.out.println("O NÚMERO ESCOLHIDO FOI: "+numeroEscolhido);
 			System.out.println("O Monge acertou um atordoamento !");
 			System.out.println("O Chefão não atacará na próxima rodada");
 			jogador.setAtordoamento(1);
@@ -63,7 +71,6 @@ public class BatalhasChefao {
 		int vidaChefao = chefao.getPtsVida();
 		int expParaNivel = (int) Math.floor(100 * Math.pow(nivel, 1.5));
 		int numeroEscolhido = calcularChance();
-		
 		int ataqueChefao = gerador();
 		int mpGasto = 0;
 		int danoSofrido = 0;
@@ -75,13 +82,14 @@ public class BatalhasChefao {
 		System.out.println("----------------O Mp do jogador é: "+jogador.getMpJogador());
 		System.out.println("----------------O Nível do jogador é: "+nivel);
 		System.out.println("----------------O nome do Chefão é é: "+chefao.getNome());
-		System.out.println("----------------A vida do Chefão é: "+chefao.getPtsVida());
+		System.out.println("----------------A vida do "+chefao.getNome()+" é: "+chefao.getPtsVida());
 		while(vida > 0 && vidaChefao > 0 && jogador.getPtsVida()>0) {
 			jogador.setAtordoamento(0);
 			jogador.setCritico(0);
 			jogador.setSangramento(0);
 			jogador.setSedento(0);
 			jogador.setMpJogador(mpAtual);
+			
 			System.out.println("(1) Aperte 1 para ataque básico (2) Aperte 2 para ataque especial: ");
 			int escolherAtaque = scan.nextInt();
 			switch(escolherAtaque) {
@@ -106,7 +114,7 @@ public class BatalhasChefao {
 				
 				numeroEscolhido = calcularChance();
 				int passiva = passivas(jogador,chefao,numeroEscolhido,jogador.getAtordoamento(),critico);
-				System.out.println("MP ATUAL É: " +mpAtual);
+				System.out.println("MP: " +mpAtual);
 				jogador.setMpJogador(mpAtual);
 				if (jogador.getCritico() == 1) {
 					vidaChefao -= jogador.getDnAtaqueEspecial();
@@ -145,6 +153,9 @@ public class BatalhasChefao {
 					vida -= chefao.getDnAtaqueBasico();
 					danoSofrido += chefao.getDnAtaqueBasico();
 					System.out.println("Vida do jogador: "+vida);
+					if(chefao.getNome() == "Rei Esqueleto") {
+						String passivarei = passivaReiEsqueleto(chefao);
+					}
 					break;
 				}
 				case 2: {
@@ -152,6 +163,9 @@ public class BatalhasChefao {
 					vida -= chefao.getDnAtaqueEspecial();
 					danoSofrido += chefao.getDnAtaqueEspecial();
 					System.out.println("Vida do jogador: "+vida);
+					if(chefao.getNome() == "Rei Esqueleto") {
+						String passivarei = passivaReiEsqueleto(chefao);
+					}
 					break;
 				}
 				}

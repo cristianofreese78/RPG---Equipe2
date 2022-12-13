@@ -117,7 +117,7 @@ public class MainTeste {
 		listaJogador = carregaListaJogador();
 		listaInimigo = carregaListaInimigo();
 		listaInimigo2 = carregaListaInimigo2();
-		listaInimigo2 = carregaListaInimigo3();
+		listaInimigo3 = carregaListaInimigo3();
 		listaChefao = carregaListaChefao();
 		
 		
@@ -130,6 +130,7 @@ public class MainTeste {
 			int escolhaArray = gerador.nextInt(listaInimigo.size());
 			Inimigo inimigo = listaInimigo.get(escolhaArray); System.out.println(inimigo.toString());
 			
+			
 			ba.batalha(jogador,inimigo);
 			listaInimigo.remove(escolhaArray);
 			System.out.println("VIDA DO JOGADOR: "+jogador.getPtsVida());
@@ -139,7 +140,9 @@ public class MainTeste {
 			System.out.println("QUANTIDADE DE POÇÕES: "+jogador.getPocao());
 			System.out.println("====================");
 		}
-		bac.batalha(jogador,listaChefao.get(0));
+		if(jogador.getPtsVida() > 0) {
+			bac.batalha(jogador,listaChefao.get(0));
+			}
 		while(listaInimigo2.size() > 0 && jogador.getPtsVida() > 0 ) {
 			Random gerador = new Random();
 			int escolhaArray2 = gerador.nextInt(listaInimigo2.size());
@@ -155,14 +158,16 @@ public class MainTeste {
 			
 			
 		}
-		
-		bac.batalha(jogador,listaChefao.get(1));
+		if(jogador.getPtsVida() > 0) {
+			bac.batalha(jogador,listaChefao.get(1));
+		}
 		while(listaInimigo3.size() > 0 && jogador.getPtsVida() > 0 ) {
 			Random gerador = new Random();
 			int escolhaArray3 = gerador.nextInt(listaInimigo3.size());
 			Inimigo inimigo = listaInimigo3.get(escolhaArray3); System.out.println(inimigo.toString());
+			System.out.println("Inimigos nível 3");
 			ba.batalha(jogador,inimigo);
-			listaInimigo2.remove(escolhaArray3);
+			listaInimigo3.remove(escolhaArray3);
 			System.out.println("VIDA DO JOGADOR: "+jogador.getPtsVida());
 			System.out.println("MP DO JOGADOR: "+jogador.getMpJogador());
 			System.out.println("EXP DO JOGADOR: "+jogador.getPtsExperiencia());
@@ -170,7 +175,16 @@ public class MainTeste {
 			System.out.println("QUANTIDADE DE POÇÕES: "+jogador.getPocao());
 			System.out.println("====================");
 		}
-		System.out.println("FIM");
+		if(jogador.getPtsVida() > 0) {
+		System.out.println("É hora de enfrentar o Rei Esqueleto!");
+		bac.batalha(jogador,listaChefao.get(2));
+		}
+		if(jogador.getPtsVida() > 0) {
+			
+			System.out.println("Parabéns, você finalizou o jogo !");
+		}else {
+			System.out.println("Fim de Jogo!");
+		}
 		//Jogador sofreu 10 de dano, aumenta 1 nivel de experiencia, utilizou um ataque especial
 		/*
 		 * jogador.atualizaDados(10, 'd', 1, 's', 1, 'd');
