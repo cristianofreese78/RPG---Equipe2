@@ -1,28 +1,20 @@
 package Swing;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.ProgressMonitor;
-import java.awt.Component;
-import javax.swing.JProgressBar;
-import javax.swing.JLabel;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.TitledBorder;
-import java.awt.Font;
-import javax.swing.Box;
-import javax.swing.border.CompoundBorder;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
-import javax.swing.JRadioButton;
-import javax.swing.JButton;
 import java.awt.Color;
-import javax.swing.UIManager;
-import java.awt.Window.Type;
+import java.awt.EventQueue;
+import java.awt.Font;
 
-public class Tela extends JFrame {
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.JRadioButton;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EmptyBorder;
+
+public class TelaJogo extends JFrame {
 
 	private JPanel contentPane;
 
@@ -33,7 +25,7 @@ public class Tela extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Tela frame = new Tela();
+					TelaJogo frame = new TelaJogo();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +37,7 @@ public class Tela extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Tela() {
+	public TelaJogo() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -194,3 +186,5 @@ public class Tela extends JFrame {
 		panel_3.add(lblNewLabel_6);
 	}
 }
+
+
