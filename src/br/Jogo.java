@@ -12,39 +12,24 @@ public class Jogo {
 	private TelaEscolhaPersonagem telaEscolha;
 	private TelaJogo telaJogo;
 		
-	public Jogo() {
+	/*public Jogo() {
 		telaAbertura = new TelaAbertura();
 		telaEscolha = new TelaEscolhaPersonagem();
 		telaJogo = new TelaJogo();
+	}*/
+	
+	public Jogo() {
 	}
 	
-	public TelaJogo getTelaJogo() {
-		return telaJogo;
+	public void abrirTelaAbertura() {
+		telaAbertura = new TelaAbertura();
 	}
-
-	public void setTelaJogo(TelaJogo telaJogo) {
-		this.telaJogo = telaJogo;
-	}
-
-
-
-	public TelaAbertura getTelaAbertura() {
-		return telaAbertura;
-	}
-
-	public void setTelaAbertura(TelaAbertura telaAbertura) {
-		this.telaAbertura = telaAbertura;
-	}
-
-	public TelaEscolhaPersonagem getTelaEscolha() {
-		return telaEscolha;
-	}
-
-	public void setTelaEscolha(TelaEscolhaPersonagem telaEscolha) {
-		this.telaEscolha = telaEscolha;
-	}
-
 	
+	public void abrirTelaEscolha() {
+		telaEscolha = new TelaEscolhaPersonagem();
+	}
 	
-	
+	public void abrirTelaJogo() {
+		telaJogo = new TelaJogo();
+	}
 }

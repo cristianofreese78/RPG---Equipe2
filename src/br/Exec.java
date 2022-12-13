@@ -6,10 +6,9 @@ public class Exec {
 
 		Jogo game = new Jogo();
 		
-		//game.getTelaAbertura().abrir();
-		//game.getTelaEscolha().abrir();
-		//game.getTelaJogo().abrir();
-		
+		//game.abrirTelaAbertura();
+		//game.abrirTelaEscolha();
+		//game.abrirTelaJogo();
 
 	}
 
