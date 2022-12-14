@@ -16,13 +16,8 @@ public class Jogo {
 	private TelaAbertura telaAbertura;
 	private TelaEscolhaPersonagem telaEscolha;
 	private TelaJogo telaJogo;
+	boolean aguarda = true;
 		
-	/*public Jogo() {
-		telaAbertura = new TelaAbertura();
-		telaEscolha = new TelaEscolhaPersonagem();
-		telaJogo = new TelaJogo();
-	}*/
-	
 	public Jogo() {
 	}
 	
@@ -31,21 +26,12 @@ public class Jogo {
 	}
 	
 	public void abrirTelaEscolha(ArrayList<Jogador> lstJog) {
-		int delay = 100;   // tempo de espera antes da 1ª execução da tarefa.
-		int interval = 1000;  // intervalo no qual a tarefa será executada.
 		telaEscolha = new TelaEscolhaPersonagem(lstJog);
-		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(new TimerTask() {
-		  public void run() {
-			  if (!telaEscolha.isShowing()) {timer.cancel();};
-		  }
-		}, delay, interval);
-		
-		do {timer.toString();} while (telaEscolha.isShowing());
-		
-			
 	}
 		
+	public boolean testaTelaEscolha() {
+		return telaEscolha.isShowing(); 
+	}
 	public void abrirTelaJogo() {
 		telaJogo = new TelaJogo();
 	}

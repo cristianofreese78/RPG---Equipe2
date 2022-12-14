@@ -2,10 +2,13 @@ package br;
 
 import java.awt.Window;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import Classes.Jogador;
 
 public class Exec {
+	
 	
 	//Cadastro de jogadores no array list listaJogador utilizando construtor
 		public static ArrayList<Jogador> carregaListaJogador()  {
@@ -25,24 +28,36 @@ public class Exec {
 
 	public static void main(String[] args) {
 		ArrayList<Jogador> listaJogador =  new ArrayList<>();
-		Jogador jogador;
 		
 		Jogo game = new Jogo();
 		
 		listaJogador = carregaListaJogador();
+		
+		int delay = 100;   // tempo de espera antes da 1ª execução da tarefa.
+		int interval = 1000;  // intervalo no qual a tarefa será executada.
+		
 		//game.abrirTelaAbertura();
-				
+		
 		game.abrirTelaEscolha(listaJogador);
 		
-		jogador = game.recebeJogador();
-		System.out.println(jogador.toString());
-	
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(new TimerTask() {
+			Jogador jogador;
+			public void run() {
+			  if (!game.testaTelaEscolha()) {
+				  jogador = game.recebeJogador();
+				  System.out.println(jogador.toString());
+				  timer.cancel();
+			      game.abrirTelaJogo();}
+		    }
+		}, delay, interval);
+		
 		
 			
 			
 			
 			
-		game.abrirTelaJogo();
+		
 
 	}
 

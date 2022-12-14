@@ -28,7 +28,6 @@ public class TelaEscolhaPersonagem extends JFrame {
 	
 	private JPanel PaneSelecaoPers;
 	public Jogador jogAux = new Jogador();
-	public boolean recebeuJogAux = false;
 	
 	public static int ObtemIndice(String nomePers, ArrayList<Jogador> lstJg) {
 		int indice = 0;
@@ -64,14 +63,6 @@ public class TelaEscolhaPersonagem extends JFrame {
 		this.jogAux = jogAux;
 	}
 	
-	public boolean isRecebeuJogAux() {
-		return recebeuJogAux;
-	}
-
-	public void setRecebeuJogAux(boolean recebeuJogAux) {
-		this.recebeuJogAux = recebeuJogAux;
-	}
-
 	public TelaEscolhaPersonagem(ArrayList<Jogador> lstJog) {
 						
 		setFont(new Font("Snap ITC", Font.PLAIN, 12));
@@ -89,7 +80,6 @@ public class TelaEscolhaPersonagem extends JFrame {
 		panelCard.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setRecebeuJogAux(true);
 				setVisible(false);
 				dispose();
 				
@@ -284,10 +274,6 @@ public class TelaEscolhaPersonagem extends JFrame {
 		
 				setJogAux(lstJog.get(ObtemIndice(lblCacador.getText(), lstJog)));
 				atualizaCard(getJogAux(), labels);
-			}
-			@Override
-			public void windowClosing(WindowEvent e) {
-				setRecebeuJogAux(true);
 			}
 		});
 		
