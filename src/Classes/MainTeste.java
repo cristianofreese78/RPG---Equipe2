@@ -11,14 +11,18 @@ public class MainTeste {
 	public static ArrayList<Jogador> carregaListaJogador()  {
 		ArrayList<Jogador> lstAuxJogador = new ArrayList<>();
 		
-		lstAuxJogador.add(new Jogador("Cavaleiro", 100, 10, "Golpe de Espada", 20, 0, 1, 20,0,0,0,0,0));
 		//Efeito: Sangramento - Causa 5 a mais de dano por rodada
-		lstAuxJogador.add(new Jogador("Samurai", 110, 9, "Lâmina Mortal", 18, 0, 1, 20,0,0,0,0,0));
-		//Efeito: Chance de dano Crítico - tem 25% de chance de causar um dano crítico dobrando o valor do seu ataque
-		lstAuxJogador.add(new Jogador("Monge", 90, 12, "Ataque Concentrado", 22, 0, 1, 20,0,0,0,0,0));
-		//Efeito : Atordoamento - Tem 25% de chance de atordoar o inimigo fazendo com que o inimigo não ataque na próxima rodada
-		lstAuxJogador.add(new Jogador("Caçador", 95, 11, "Sedento por Luta", 19, 0, 1, 20,0,0,0,0,0));
-		//Efeito : Recuperação de vida - Recupera 10% do dano causado.
+		lstAuxJogador.add(new Jogador("Cavaleiro", 100, 10, "Golpe de Espada", 20, 0, 1, 20,0,0,0,1,0,
+												  "C:\\RPG---Equipe2\\src\\Img\\escolhaCavaleiro.png"));			
+		//Efeito: Chance de dano Crítico - tem 25% de chance de causar um dano crítico dobrando o valor do seu ataque			
+		lstAuxJogador.add(new Jogador("Samurai", 110, 9, "Lâmina Mortal", 18, 0, 1, 20,0,0,1,0,0,
+												  "C:\\RPG---Equipe2\\src\\Img\\escolhaSamurai.png"));			
+		//Efeito : Atordoamento - Tem 25% de chance de atordoar o inimigo fazendo com que o inimigo não ataque na próxima rodada			
+		lstAuxJogador.add(new Jogador("Monge", 90, 12, "Ataque Concentrado", 22, 0, 1, 20,0,0,1,0,0,
+												  "C:\\RPG---Equipe2\\src\\Img\\escolhaMonge.png"));			
+		//Efeito : Recuperação de vida - Recupera 10% do dano causado.			
+		lstAuxJogador.add(new Jogador("Caçador", 95, 11, "Sedento por Luta", 19, 0, 1, 20,0,0,0,0,1,
+												  "C:\\RPG---Equipe2\\src\\Img\\escolhaCacador.png"));	
 		
 		return lstAuxJogador;
 	}

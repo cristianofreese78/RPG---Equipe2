@@ -3,6 +3,7 @@ package br.telas;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,11 +15,17 @@ import javax.swing.JRadioButton;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 
+import Classes.Batalhas;
+import Classes.BatalhasChefao;
+import Classes.Jogador;
+import Classes.ListasElementos;
+import Classes.Inimigo;
+
 public class TelaJogo extends JFrame {
 
 	private JPanel PaneTelaJogo;
 
-	public TelaJogo() {
+	public TelaJogo(Jogador jog, ListasElementos lstElem,  Batalhas btlInim, BatalhasChefao btlChef) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -173,6 +180,91 @@ public class TelaJogo extends JFrame {
 		
 		setLocationRelativeTo(null);
 		setVisible(true);
+		
+		/*
+		System.out.println(jog.toString());
+		System.out.println(lstElem.getListaJogador());
+		System.out.println(lstElem.getListaInimigo1());
+		System.out.println(lstElem.getListaInimigo2());
+		System.out.println(lstElem.getListaInimigo3());
+		System.out.println(lstElem.getListaChefao());
+		System.out.println(btlInim.toString());
+		System.out.println(btlChef.toString());
+		*/
+		
+		//Carrega dados do jogador. jog
+		progressBarVidaPersonagem.setValue(jog.getPtsVida());
+		lblPersonagem.setText(jog.getNome());
+		lblNivelPersonagem.setText(Integer.toString(jog.getNvlJogador()));
+		progressExpPersonagem.setValue(jog.getPtsExperiencia());
+		lblMPPersonagem.setText(Integer.toString(jog.getMpJogador()));
+		lblImgPersonagem.setIcon(new ImageIcon(jog.getImagem()));
+		lblImgPersonagem.setToolTipText(jog.getNome().toUpperCase());
+		
+		while(lstElem.getListaInimigo1().size() > 0 && jog.getPtsVida() > 0 ) {
+			Random gerador = new Random();
+			int escolhaArray = gerador.nextInt(lstElem.getListaInimigo1().size());
+			Inimigo inimigoAtual = lstElem.getListaInimigo1().get(escolhaArray); 
+			//Carrega dados do inimigo
+			System.out.println(inimigoAtual.toString());
+			
+			
+			btlInim.batalha(jog,inimigoAtual);
+			lstElem.getListaInimigo1().remove(escolhaArray);
+			//Atualiza dados jogador
+			System.out.println("VIDA DO JOGADOR: "+jog.getPtsVida());
+			System.out.println("MP DO JOGADOR: "+jog.getMpJogador());
+			System.out.println("EXP DO JOGADOR: "+jog.getPtsExperiencia());
+			System.out.println("NÍVEL DO JOGADOR: "+jog.getNvlJogador());
+			System.out.println("QUANTIDADE DE POÇÕES: "+jog.getPocao());
+			System.out.println("====================");
+		}
+		if(jog.getPtsVida() > 0) {
+			//Carrega dados chefao 0
+			btlChef.batalha(jog,lstElem.getListaChefao().get(0));
+			}
+		while(lstElem.getListaInimigo2().size() > 0 && jog.getPtsVida() > 0 ) {
+			Random gerador = new Random();
+			int escolhaArray2 = gerador.nextInt(lstElem.getListaInimigo2().size());
+			Inimigo inimigo = lstElem.getListaInimigo2().get(escolhaArray2); System.out.println(inimigo.toString());
+			btlInim.batalha(jog,inimigo);
+			lstElem.getListaInimigo2().remove(escolhaArray2);
+			System.out.println("VIDA DO JOGADOR: "+jog.getPtsVida());
+			System.out.println("MP DO JOGADOR: "+jog.getMpJogador());
+			System.out.println("EXP DO JOGADOR: "+jog.getPtsExperiencia());
+			System.out.println("NÍVEL DO JOGADOR: "+jog.getNvlJogador());
+			System.out.println("QUANTIDADE DE POÇÕES: "+jog.getPocao());
+			System.out.println("====================");
+			
+			
+		}
+		if(jog.getPtsVida() > 0) {
+			btlChef.batalha(jog,lstElem.getListaChefao().get(1));
+		}
+		while(lstElem.getListaInimigo3().size() > 0 && jog.getPtsVida() > 0 ) {
+			Random gerador = new Random();
+			int escolhaArray3 = gerador.nextInt(lstElem.getListaInimigo3().size());
+			Inimigo inimigo = lstElem.getListaInimigo3().get(escolhaArray3); System.out.println(inimigo.toString());
+			System.out.println("Inimigos nível 3");
+			btlInim.batalha(jog,inimigo);
+			lstElem.getListaInimigo3().remove(escolhaArray3);
+			System.out.println("VIDA DO JOGADOR: "+jog.getPtsVida());
+			System.out.println("MP DO JOGADOR: "+jog.getMpJogador());
+			System.out.println("EXP DO JOGADOR: "+jog.getPtsExperiencia());
+			System.out.println("NÍVEL DO JOGADOR: "+jog.getNvlJogador());
+			System.out.println("QUANTIDADE DE POÇÕES: "+jog.getPocao());
+			System.out.println("====================");
+		}
+		if(jog.getPtsVida() > 0) {
+		System.out.println("É hora de enfrentar o Rei Esqueleto!");
+		btlChef.batalha(jog,lstElem.getListaChefao().get(2));
+		}
+		if(jog.getPtsVida() > 0) {
+			
+			System.out.println("Parabéns, você finalizou o jogo !");
+		}else {
+			System.out.println("Fim de Jogo!");
+		}
 	}
 }
 

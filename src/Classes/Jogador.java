@@ -9,7 +9,7 @@ public class Jogador extends AtaqueEspecial{
 	private int sangramento;
 	private int sedento;
 	
-	public Jogador(String nmElementos, int ptsVida, int dnAtaqueBasico, String tpAtaqueEspecial, int dnAtaqueEspecial, int ptsExperiencia, int nvlPersonagem, int mpPersonagem, int pocao, int atordoamento, int critico, int sangramento, int sedento ) {
+	public Jogador(String nmElementos, int ptsVida, int dnAtaqueBasico, String tpAtaqueEspecial, int dnAtaqueEspecial, int ptsExperiencia, int nvlPersonagem, int mpPersonagem, int pocao, int atordoamento, int critico, int sangramento, int sedento, String img ) {
 		super();
 		this.setNome(nmElementos);
 		this.setPtsVida(ptsVida);
@@ -24,6 +24,7 @@ public class Jogador extends AtaqueEspecial{
 		this.critico = critico;
 		this.sangramento = sangramento;
 		this.sedento = sedento;
+		this.setImagem(img);
 
 	}
 	
