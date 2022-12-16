@@ -3,6 +3,11 @@ package Classes;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
+import javax.swing.JRadioButton;
+
 public class BatalhasChefao {
 	
 	public static  int calcularChance() {
@@ -61,7 +66,22 @@ public class BatalhasChefao {
 		
 	}
 	
-	public void batalha(Jogador jogador, Chefao chefao) {
+	public void batalha(Jogador jogador, Chefao chefao, JLabel[] lblJog, JProgressBar[] pgrJog, JLabel[] lblInim, JProgressBar[] pgrInim, JButton[] btnImgInim, JRadioButton[] JRadAtaq, JButton[] JButtonsAtaq, JLabel[] lblAtaq) {
+		//lblJog[0] lblPersonagem, lblJog[1] lblNivelPersonagem, lblJog[2] lblMPPersonagem, lblJog[3] lblPocoes, lblJog[4] lblImgPersonagem
+		//pgrJog[0] progressBarVidaPersonagem, pgrJog[1] progressExpPersonagem
+				
+		//lblInim[0] lblAdversario, lblInim[1] lblImgAdversario
+		//pgrInim[0] progressVidaAdversario
+		//btnImgInim[0] btnPocao1Adversario, btnImg[1] btnPocao2Adversario
+		
+		//JRadAtaq[0] rdbtnAtaqueBasico, JRadAtaq[1] rdbtnAtaqueEspecial
+		//JButtonsAtaq[0] btnAtacar
+				
+		//lblAtaq[0] lblBatalhaSentidoAtaque, lblAtaq[1] lblBatalhaTipoAtaque, lblAtaq[2] lblBatalhaDanoAtaque
+		
+		// Teste
+		lblJog[0].setText("NM JOG BAT");		
+		lblInim[0].setText("NM INI BAT");
 		Scanner scan = new Scanner(System.in);
 		int vida = jogador.getPtsVida();
 		int mpAtual = jogador.getMpJogador();

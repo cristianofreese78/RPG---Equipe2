@@ -17,14 +17,17 @@ import javax.swing.border.EmptyBorder;
 
 import Classes.Batalhas;
 import Classes.BatalhasChefao;
+import Classes.Chefao;
 import Classes.Jogador;
 import Classes.ListasElementos;
 import Classes.Inimigo;
+import javax.swing.SwingConstants;
 
 public class TelaJogo extends JFrame {
 
 	private JPanel PaneTelaJogo;
 
+		
 	public TelaJogo(Jogador jog, ListasElementos lstElem,  Batalhas btlInim, BatalhasChefao btlChef) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -109,7 +112,7 @@ public class TelaJogo extends JFrame {
 		panelAdversario.add(btnPocao2Adversario);
 		
 		JLabel lblImgPersonagem = new JLabel("");
-		lblImgPersonagem.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\samuraiIcon3.png"));
+		lblImgPersonagem.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\escolhaCavaleiro2.png"));
 		lblImgPersonagem.setBounds(10, 95, 108, 108);
 		PaneTelaJogo.add(lblImgPersonagem);
 		
@@ -154,117 +157,139 @@ public class TelaJogo extends JFrame {
 		lblMPPersonagem.setBounds(21, 11, 46, 14);
 		panelMPPersonagem.add(lblMPPersonagem);
 		
+		JLabel lblPocoes = new JLabel("0");
+		lblPocoes.setForeground(Color.GRAY);
+		lblPocoes.setFont(new Font("Snap ITC", Font.PLAIN, 11));
+		lblPocoes.setBounds(53, 11, 14, 14);
+		panelMPPersonagem.add(lblPocoes);
+		lblImgPersonagem.setIcon(new ImageIcon(jog.getImagem()));
+		lblImgPersonagem.setToolTipText(jog.getNome().toUpperCase());
+		
 		JPanel panelBatalhaStatusAtaques = new JPanel();
 		panelBatalhaStatusAtaques.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panelBatalhaStatusAtaques.setBounds(145, 95, 146, 108);
 		PaneTelaJogo.add(panelBatalhaStatusAtaques);
 		panelBatalhaStatusAtaques.setLayout(null);
 		
-		JLabel lblBatalhaTipoAtaque = new JLabel("ATAQUE BÁSICO");
+		JLabel lblBatalhaTipoAtaque = new JLabel("-");
+		lblBatalhaTipoAtaque.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBatalhaTipoAtaque.setForeground(Color.RED);
 		lblBatalhaTipoAtaque.setFont(new Font("Snap ITC", Font.PLAIN, 10));
-		lblBatalhaTipoAtaque.setBounds(20, 61, 126, 14);
+		lblBatalhaTipoAtaque.setBounds(0, 61, 146, 14);
 		panelBatalhaStatusAtaques.add(lblBatalhaTipoAtaque);
 		
-		JLabel lblBatalhaDanoAtaque = new JLabel("DANO 10");
+		JLabel lblBatalhaDanoAtaque = new JLabel("-");
+		lblBatalhaDanoAtaque.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBatalhaDanoAtaque.setForeground(Color.RED);
 		lblBatalhaDanoAtaque.setBackground(Color.WHITE);
 		lblBatalhaDanoAtaque.setFont(new Font("Snap ITC", Font.PLAIN, 10));
-		lblBatalhaDanoAtaque.setBounds(48, 83, 88, 14);
+		lblBatalhaDanoAtaque.setBounds(0, 83, 146, 14);
 		panelBatalhaStatusAtaques.add(lblBatalhaDanoAtaque);
 		
 		JLabel lblBatalhaSentidoAtaque = new JLabel("");
-		lblBatalhaSentidoAtaque.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\setaDireitaIcon2.jpg"));
+		lblBatalhaSentidoAtaque.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\aguardaAtaque.png"));
 		lblBatalhaSentidoAtaque.setBounds(15, 11, 116, 39);
 		panelBatalhaStatusAtaques.add(lblBatalhaSentidoAtaque);
 		
 		setLocationRelativeTo(null);
 		setVisible(true);
 		
-		/*
-		System.out.println(jog.toString());
-		System.out.println(lstElem.getListaJogador());
-		System.out.println(lstElem.getListaInimigo1());
-		System.out.println(lstElem.getListaInimigo2());
-		System.out.println(lstElem.getListaInimigo3());
-		System.out.println(lstElem.getListaChefao());
-		System.out.println(btlInim.toString());
-		System.out.println(btlChef.toString());
-		*/
+				
+		//Vetores auxiliares para atualizar os dados do jogador e dos oponentes na tela usando os componentes
+		JLabel[] labelsJog = {lblPersonagem,lblNivelPersonagem,lblMPPersonagem,lblPocoes, lblImgPersonagem};
+		JProgressBar[] progressJog = {progressBarVidaPersonagem, progressExpPersonagem};
+		
+		JLabel[] labelsInim = {lblAdversario, lblImgAdversario};
+		JProgressBar[] progressInim = {progressVidaAdversario};
+		JButton[] buttonsInim = {btnPocao1Adversario, btnPocao2Adversario};
+		
+		//Vetor contendo opção de ataque básico ou especial e executar ação
+		JRadioButton[] JRadiosAtaq = {rdbtnAtaqueBasico,rdbtnAtaqueEspecial} ;
+		JButton[] JButtonsAtaq = {btnAtacar};
+				
+		//Vetor contendo dados do sentido de ataque: jogador ou adversário
+		JLabel[] JLabelsAtaque = {lblBatalhaSentidoAtaque, lblBatalhaTipoAtaque, lblBatalhaDanoAtaque};   
 		
 		//Carrega dados do jogador. jog
-		progressBarVidaPersonagem.setValue(jog.getPtsVida());
-		lblPersonagem.setText(jog.getNome());
-		lblNivelPersonagem.setText(Integer.toString(jog.getNvlJogador()));
-		progressExpPersonagem.setValue(jog.getPtsExperiencia());
-		lblMPPersonagem.setText(Integer.toString(jog.getMpJogador()));
-		lblImgPersonagem.setIcon(new ImageIcon(jog.getImagem()));
-		lblImgPersonagem.setToolTipText(jog.getNome().toUpperCase());
+		System.out.println("TELA - CARREGA DADOS DO JOGADOR");
+		jog.atualizaTelaDadosJogador(labelsJog, progressJog, 1);
 		
+		//1a Rodada
 		while(lstElem.getListaInimigo1().size() > 0 && jog.getPtsVida() > 0 ) {
 			Random gerador = new Random();
 			int escolhaArray = gerador.nextInt(lstElem.getListaInimigo1().size());
 			Inimigo inimigoAtual = lstElem.getListaInimigo1().get(escolhaArray); 
+			
 			//Carrega dados do inimigo
-			System.out.println(inimigoAtual.toString());
-			
-			
-			btlInim.batalha(jog,inimigoAtual);
+			System.out.println("TELA - CARREGA DADOS DO INIMIGO");
+			inimigoAtual.atualizaTelaDadosInimigo(labelsInim, progressInim, buttonsInim, 1);
+						
+			//Batalha entre o jogador e o inimigo atual e remoção do inimigo na lista se derrotado
+			btlInim.batalha(jog, inimigoAtual, labelsJog, progressJog, labelsInim, progressInim, buttonsInim, JRadiosAtaq, JButtonsAtaq, JLabelsAtaque );
 			lstElem.getListaInimigo1().remove(escolhaArray);
+			
 			//Atualiza dados jogador
-			System.out.println("VIDA DO JOGADOR: "+jog.getPtsVida());
-			System.out.println("MP DO JOGADOR: "+jog.getMpJogador());
-			System.out.println("EXP DO JOGADOR: "+jog.getPtsExperiencia());
-			System.out.println("NÍVEL DO JOGADOR: "+jog.getNvlJogador());
-			System.out.println("QUANTIDADE DE POÇÕES: "+jog.getPocao());
-			System.out.println("====================");
+			System.out.println("TELA - ATUALIZA DADOS DO JOGADOR APÓS BATALHA");
+			jog.atualizaTelaDadosJogador(labelsJog, progressJog, 2);
 		}
 		if(jog.getPtsVida() > 0) {
-			//Carrega dados chefao 0
-			btlChef.batalha(jog,lstElem.getListaChefao().get(0));
-			}
+			//Se o jogador ainda possui vida então carrega batalha entre o jogador e o primeiro chefão
+			Chefao chefao1 = lstElem.getListaChefao().get(0);
+			System.out.println("TELA - CARREGA DADOS DO CHEFAO1");
+			chefao1.atualizaTelaDadosChefao(labelsInim, progressInim, buttonsInim, 1);
+			btlChef.batalha(jog, chefao1, labelsJog, progressJog, labelsInim, progressInim, buttonsInim, JRadiosAtaq, JButtonsAtaq, JLabelsAtaque );
+		}
+		
+		//2a Rodada
 		while(lstElem.getListaInimigo2().size() > 0 && jog.getPtsVida() > 0 ) {
 			Random gerador = new Random();
 			int escolhaArray2 = gerador.nextInt(lstElem.getListaInimigo2().size());
-			Inimigo inimigo = lstElem.getListaInimigo2().get(escolhaArray2); System.out.println(inimigo.toString());
-			btlInim.batalha(jog,inimigo);
+			Inimigo inimigo = lstElem.getListaInimigo2().get(escolhaArray2); 
+			
+			System.out.println("TELA - CARREGA DADOS DO INIMIGO");
+			inimigo.atualizaTelaDadosInimigo(labelsInim, progressInim, buttonsInim, 1);
+			
+			btlInim.batalha(jog, inimigo, labelsJog, progressJog, labelsInim, progressInim, buttonsInim, JRadiosAtaq, JButtonsAtaq, JLabelsAtaque );
 			lstElem.getListaInimigo2().remove(escolhaArray2);
-			System.out.println("VIDA DO JOGADOR: "+jog.getPtsVida());
-			System.out.println("MP DO JOGADOR: "+jog.getMpJogador());
-			System.out.println("EXP DO JOGADOR: "+jog.getPtsExperiencia());
-			System.out.println("NÍVEL DO JOGADOR: "+jog.getNvlJogador());
-			System.out.println("QUANTIDADE DE POÇÕES: "+jog.getPocao());
-			System.out.println("====================");
 			
-			
+			System.out.println("TELA - ATUALIZA DADOS DO JOGADOR APÓS BATALHA");
+			jog.atualizaTelaDadosJogador(labelsJog, progressJog, 2);
 		}
 		if(jog.getPtsVida() > 0) {
-			btlChef.batalha(jog,lstElem.getListaChefao().get(1));
+			Chefao chefao2 = lstElem.getListaChefao().get(1);
+			System.out.println("TELA - CARREGA DADOS DO CHEFAO2");
+			chefao2.atualizaTelaDadosChefao(labelsInim, progressInim, buttonsInim, 1);
+			btlChef.batalha(jog, chefao2, labelsJog, progressJog, labelsInim, progressInim, buttonsInim, JRadiosAtaq, JButtonsAtaq, JLabelsAtaque );
 		}
+		
+		//3a Rodada
 		while(lstElem.getListaInimigo3().size() > 0 && jog.getPtsVida() > 0 ) {
 			Random gerador = new Random();
 			int escolhaArray3 = gerador.nextInt(lstElem.getListaInimigo3().size());
-			Inimigo inimigo = lstElem.getListaInimigo3().get(escolhaArray3); System.out.println(inimigo.toString());
-			System.out.println("Inimigos nível 3");
-			btlInim.batalha(jog,inimigo);
-			lstElem.getListaInimigo3().remove(escolhaArray3);
-			System.out.println("VIDA DO JOGADOR: "+jog.getPtsVida());
-			System.out.println("MP DO JOGADOR: "+jog.getMpJogador());
-			System.out.println("EXP DO JOGADOR: "+jog.getPtsExperiencia());
-			System.out.println("NÍVEL DO JOGADOR: "+jog.getNvlJogador());
-			System.out.println("QUANTIDADE DE POÇÕES: "+jog.getPocao());
-			System.out.println("====================");
-		}
-		if(jog.getPtsVida() > 0) {
-		System.out.println("É hora de enfrentar o Rei Esqueleto!");
-		btlChef.batalha(jog,lstElem.getListaChefao().get(2));
-		}
-		if(jog.getPtsVida() > 0) {
+			Inimigo inimigo = lstElem.getListaInimigo3().get(escolhaArray3); 
 			
+			System.out.println("TELA - CARREGA DADOS DO INIMIGO");
+			inimigo.atualizaTelaDadosInimigo(labelsInim, progressInim, buttonsInim, 1);
+			
+			btlInim.batalha(jog, inimigo, labelsJog, progressJog, labelsInim, progressInim, buttonsInim, JRadiosAtaq, JButtonsAtaq, JLabelsAtaque );
+			lstElem.getListaInimigo3().remove(escolhaArray3);
+			
+			System.out.println("TELA - ATUALIZA DADOS DO JOGADOR APÓS BATALHA");
+			jog.atualizaTelaDadosJogador(labelsJog, progressJog, 2);
+		}
+		
+		if(jog.getPtsVida() > 0) {
+			Chefao chefao3 = lstElem.getListaChefao().get(2);
+			System.out.println("TELA - CARREGA DADOS DO CHEFAO2");
+			chefao3.atualizaTelaDadosChefao(labelsInim, progressInim, buttonsInim, 1);
+			btlChef.batalha(jog, chefao3, labelsJog, progressJog, labelsInim, progressInim, buttonsInim, JRadiosAtaq, JButtonsAtaq, JLabelsAtaque );
+		}
+		if(jog.getPtsVida() > 0) {
 			System.out.println("Parabéns, você finalizou o jogo !");
 		}else {
-			System.out.println("Fim de Jogo!");
+			System.out.println("Você Morreu!");
 		}
+		System.out.println("FIM DO JOGO");
 	}
 }
 

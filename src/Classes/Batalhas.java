@@ -3,6 +3,12 @@ package Classes;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
+import javax.swing.JRadioButton;
+
 public class Batalhas {
 	
 	public static  int calcularChance() {
@@ -49,7 +55,22 @@ public class Batalhas {
 		
 	}
 	
-	public void batalha(Jogador jogador, Inimigo inimigo) {
+	public void batalha(Jogador jogador, Inimigo inimigo, JLabel[] lblJog, JProgressBar[] pgrJog, JLabel[] lblInim, JProgressBar[] pgrInim, JButton[] btnImgInim, JRadioButton[] JRadAtaq, JButton[] JButtonsAtaq, JLabel[] lblAtaq) {
+		//lblJog[0] lblPersonagem, lblJog[1] lblNivelPersonagem, lblJog[2] lblMPPersonagem, lblJog[3] lblPocoes, lblJog[4] lblImgPersonagem
+		//pgrJog[0] progressBarVidaPersonagem, pgrJog[1] progressExpPersonagem
+		
+		//lblInim[0] lblAdversario, lblInim[1] lblImgAdversario
+		//pgrInim[0] progressVidaAdversario
+		//btnImgInim[0] btnPocao1Adversario, btnImg[1] btnPocao2Adversario
+		
+		//JRadAtaq[0] rdbtnAtaqueBasico, JRadAtaq[1] rdbtnAtaqueEspecial
+		//JButtonsAtaq[0] btnAtacar
+		
+		//lblAtaq[0] lblBatalhaSentidoAtaque, lblAtaq[1] lblBatalhaTipoAtaque, lblAtaq[2] lblBatalhaDanoAtaque
+		
+		// Teste
+		lblJog[0].setText("NM JOG BAT");
+		lblInim[0].setText("NM INI BAT");
 		Scanner scan = new Scanner(System.in);
 		int vida = jogador.getPtsVida();
 		int mpAtual = jogador.getMpJogador();
@@ -66,11 +87,11 @@ public class Batalhas {
 		int critico = 0;
 		boolean flag = true;
 		
-		System.out.println("----------------A vida do jogador é: "+vida);
-		System.out.println("----------------O Mp do jogador é: "+jogador.getMpJogador());
-		System.out.println("----------------O Nível do jogador é: "+nivel);
-		System.out.println("----------------O nome do inimigo é: "+inimigo.getNome());
-		System.out.println("----------------A vida do "+inimigo.getNome()+" é: "+inimigo.getPtsVida());
+		//System.out.println("----------------A vida do jogador é: "+vida);
+		//System.out.println("----------------O Mp do jogador é: "+jogador.getMpJogador());
+		//System.out.println("----------------O Nível do jogador é: "+nivel);
+		//System.out.println("----------------O nome do inimigo é: "+inimigo.getNome());
+		//System.out.println("----------------A vida do "+inimigo.getNome()+" é: "+inimigo.getPtsVida());
 		while(vida > 0 && vidaInimigo > 0 && jogador.getPtsVida()>0 ) {
 			jogador.setAtordoamento(0);
 			jogador.setCritico(0);
@@ -132,6 +153,8 @@ public class Batalhas {
 			}
 			}
 		
+			//Temporizar 2s ou  acionar botão
+			
 			if (vidaInimigo > 0 && flag == true && jogador.getAtordoamento() == 0) {
 				switch(ataqueIniSimples) { 
 				case 1: {

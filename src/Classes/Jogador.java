@@ -1,5 +1,9 @@
 package Classes;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
+
 public class Jogador extends AtaqueEspecial{
 	private int ptsExperiencia;
 	private int nvlJogador;
@@ -121,6 +125,30 @@ public class Jogador extends AtaqueEspecial{
 		
 		if (this.getPtsVida() > 0) return true;
 		else return false;
+	}
+	
+	public void atualizaTelaDadosJogador(JLabel[] lbl, JProgressBar[] pgr, int opcao) {
+		switch(opcao) {
+			case 1: {
+				lbl[0].setText(this.getNome());								//lblPersonagem
+				lbl[1].setText(Integer.toString(this.getNvlJogador()));		//lblNivelPersonagem
+				lbl[2].setText(Integer.toString(this.getMpJogador()));		//lblMPPersonagem
+				lbl[3].setText(Integer.toString(this.getPocao()));			//lblPocoes
+				lbl[4].setIcon(new ImageIcon(this.getImagem()));				//lblImgPersonagem
+				lbl[4].setToolTipText(this.getNome().toUpperCase());			//lblImgPersonagem
+				pgr[0].setMaximum(this.getPtsVida());							//progressBarVidaPersonagem
+				pgr[0].setValue(this.getPtsVida());							//progressBarVidaPersonagem
+				pgr[1].setValue(this.getPtsExperiencia());							//progressExpPersonagem
+				pgr[1].setToolTipText(Integer.toString(this.getPtsExperiencia()));	//progressExpPersonagem
+			}
+			case 2: {
+				lbl[1].setText(Integer.toString(this.getNvlJogador()));		//lblNivelPersonagem
+				lbl[2].setText(Integer.toString(this.getMpJogador()));		//lblMPPersonagem
+				lbl[3].setText(Integer.toString(this.getPocao()));			//lblPocoes
+				pgr[0].setValue(this.getPtsVida());							//progressBarVidaPersonagem
+				pgr[1].setValue(this.getPtsExperiencia());							//progressExpPersonagem
+			}
+		}
 	}
 
 	
