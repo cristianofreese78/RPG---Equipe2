@@ -20,6 +20,26 @@ public class BatalhasChefao {
 		Random gerador = new Random();
 		return gerador.nextInt(2) + 1;
 	}
+	public static int numeroClima() {
+		Random gerador = new Random();
+		int numeroClima = gerador.nextInt(3)+1;
+		return numeroClima;
+	}
+
+	public static String eventoClimatico(int numeroClima, Jogador jogador, Inimigo inimigo) {
+		if (numeroClima == 1 ) {
+			System.out.println("Clima: Manhã\nO "+jogador.getNome()+" ganhou + 10 de vida!");
+			jogador.setPtsVida(jogador.getPtsVida()+10);
+			System.out.println("A vida do jogador foi para: "+jogador.getPtsVida());
+		}else if (numeroClima == 2) {
+			System.out.println("Clima: Tarde");
+		}else if (numeroClima == 3) {
+			System.out.println("Clima: Noite de lua cheia\nO inimigo "+inimigo.getNome()+" ganhou + 10 de vida!");
+			inimigo.setPtsVida(inimigo.getPtsVida()+10);
+			System.out.println("A vida do inimigo foi para: "+inimigo.getPtsVida());
+		}
+		return null;
+	}
 	public static String passivaReiEsqueleto(Chefao chefao) {
 		if(chefao.getNome() == "Rei Esqueleto") {
 			chefao.setDnAtaqueBasico(chefao.getDnAtaqueBasico()*(int)1.10);
@@ -91,6 +111,7 @@ public class BatalhasChefao {
 		int vidaChefao = chefao.getPtsVida();
 		int expParaNivel = (int) Math.floor(100 * Math.pow(nivel, 1.5));
 		int numeroEscolhido = calcularChance();
+		int eventos = numeroClima();
 		int ataqueChefao = gerador();
 		int mpGasto = 0;
 		int danoSofrido = 0;
@@ -205,6 +226,10 @@ public class BatalhasChefao {
 			System.out.println("Você ganhou uma poção de cura!");
 			qtdPocao += 1;
 			jogador.setPocao(qtdPocao);
+		}
+
+		if (eventos == 1) {
+			jogador.setPtsVida(jogador.getPtsVida()-10);
 		}
 		if(exp >= expParaNivel) {
 			System.out.println("Parabéns você evoluiu de nível !");

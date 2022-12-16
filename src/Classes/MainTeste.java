@@ -31,13 +31,13 @@ public class MainTeste {
 	public static ArrayList<Inimigo> carregaListaInimigo()  {
 		ArrayList<Inimigo> lstAuxInimigo = new ArrayList<>();
 		
-		lstAuxInimigo.add(new Inimigo("Slime", 25, 5));
-		lstAuxInimigo.add(new Inimigo("Slime de lama", 25, 10));
-		lstAuxInimigo.add(new Inimigo("Lobisomen", 40, 20));
-		lstAuxInimigo.add(new Inimigo("Zumbi", 35, 15));
-		lstAuxInimigo.add(new Inimigo("Duende", 30, 10));
-		lstAuxInimigo.add(new Inimigo("Globin", 35, 15));
-		lstAuxInimigo.add(new Inimigo("Espantalho Almadiçoado", 40, 10));
+		lstAuxInimigo.add(new Inimigo("Slime", 25, 5,null));
+		lstAuxInimigo.add(new Inimigo("Slime de lama", 25, 10,null));
+		lstAuxInimigo.add(new Inimigo("Lobisomen", 40, 20,null));
+		lstAuxInimigo.add(new Inimigo("Zumbi", 35, 15,null));
+		lstAuxInimigo.add(new Inimigo("Duende", 30, 10,null));
+		lstAuxInimigo.add(new Inimigo("Globin", 35, 15,null));
+		lstAuxInimigo.add(new Inimigo("Espantalho Almadiçoado", 40, 10,null));
  		
 		return lstAuxInimigo;
 	}
@@ -45,28 +45,28 @@ public class MainTeste {
 	public static ArrayList<Inimigo> carregaListaInimigo2()  {
 		ArrayList<Inimigo> lstAuxInimigo2 = new ArrayList<>();
 		
-		lstAuxInimigo2.add(new Inimigo("Slime", 50, 7));
-		lstAuxInimigo2.add(new Inimigo("Slime de lama", 50, 15));
-		lstAuxInimigo2.add(new Inimigo("Lobisomen", 80, 30));
-		lstAuxInimigo2.add(new Inimigo("Zumbi", 70, 22));
-		lstAuxInimigo2.add(new Inimigo("Duende", 60, 15));
-		lstAuxInimigo2.add(new Inimigo("Globin", 70, 22));
-		lstAuxInimigo2.add(new Inimigo("Espantalho Almadiçoado", 80, 15));
+		lstAuxInimigo2.add(new Inimigo("Slime", 50, 7,null));
+		lstAuxInimigo2.add(new Inimigo("Slime de lama", 50, 15,null));
+		lstAuxInimigo2.add(new Inimigo("Lobisomen", 80, 30,null));
+		lstAuxInimigo2.add(new Inimigo("Zumbi", 70, 22,null));
+		lstAuxInimigo2.add(new Inimigo("Duende", 60, 15,null));
+		lstAuxInimigo2.add(new Inimigo("Globin", 70, 22,null));
+		lstAuxInimigo2.add(new Inimigo("Espantalho Almadiçoado", 80, 15,null));
  		
 		return lstAuxInimigo2;
 	}
 	public static ArrayList<Inimigo> carregaListaInimigo3()  {
-		ArrayList<Inimigo> lstAuxInimigo2 = new ArrayList<>();
+		ArrayList<Inimigo> lstAuxInimigo3 = new ArrayList<>();
 		
-		lstAuxInimigo2.add(new Inimigo("Slime", 75, 10));
-		lstAuxInimigo2.add(new Inimigo("Slime de lama", 100, 23));
-		lstAuxInimigo2.add(new Inimigo("Lobisomen", 120, 45));
-		lstAuxInimigo2.add(new Inimigo("Zumbi", 100, 33));
-		lstAuxInimigo2.add(new Inimigo("Duende", 90, 23));
-		lstAuxInimigo2.add(new Inimigo("Globin", 105, 35));
-		lstAuxInimigo2.add(new Inimigo("Espantalho Almadiçoado", 80, 25));
+		lstAuxInimigo3.add(new Inimigo("Slime", 75, 10,null));
+		lstAuxInimigo3.add(new Inimigo("Slime de lama", 100, 23,null));
+		lstAuxInimigo3.add(new Inimigo("Lobisomen", 120, 45,null));
+		lstAuxInimigo3.add(new Inimigo("Zumbi", 100, 33,null));
+		lstAuxInimigo3.add(new Inimigo("Duende", 90, 23,null));
+		lstAuxInimigo3.add(new Inimigo("Globin", 105, 35,null));
+		lstAuxInimigo3.add(new Inimigo("Espantalho Almadiçoado", 80, 25,null));
  		
-		return lstAuxInimigo2;
+		return lstAuxInimigo3;
 	}
 	
 	
@@ -74,9 +74,9 @@ public class MainTeste {
 	public static ArrayList<Chefao> carregaListaChefao()  {
 		ArrayList<Chefao> lstAuxChefao = new ArrayList<>();
 		
-		lstAuxChefao.add(new Chefao("Bárbaro", 80, 30, "Padrão", 40));
-		lstAuxChefao.add(new Chefao("Ancião", 120, 40, "Padrão", 55));
-		lstAuxChefao.add(new Chefao("Rei Esqueleto", 160, 50, "Passiva Fúria do Rei", 60));
+		lstAuxChefao.add(new Chefao("Bárbaro", 80, 30, "Padrão", 40,null));
+		lstAuxChefao.add(new Chefao("Ancião", 120, 40, "Padrão", 55,null));
+		lstAuxChefao.add(new Chefao("Rei Esqueleto", 160, 50, "Passiva Fúria do Rei", 60,null));
  		//Efeito : PASSIVA- FURIA DO REI - A cada turno o REI ESQUELETO AUMENTA EM 10% o seu dano.
 		
 		return lstAuxChefao;
@@ -103,7 +103,7 @@ public class MainTeste {
 	}
 	
 	public static int expParaNivel(int nv) { // cálculo de experiência para evoluir de nível
-	    return (int) Math.floor(100 * Math.pow(nv, 1.5));
+	    return (int) Math.floor(100 * Math.pow(nv, 1.2));
 	}
 	
 
