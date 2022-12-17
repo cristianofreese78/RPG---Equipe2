@@ -13,11 +13,12 @@ import Classes.Jogador;
 import Classes.ListasElementos;
 import br.telas.TelaAbertura;
 import br.telas.TelaEscolhaPersonagem;
+import br.telas.TelaHistoria;
 import br.telas.TelaJogo;
 
 
 public class Jogo {
-
+	private TelaHistoria telaHistoria;
 	private TelaAbertura telaAbertura;
 	private TelaEscolhaPersonagem telaEscolha;
 	private TelaJogo telaJogo;
@@ -26,6 +27,9 @@ public class Jogo {
 	public Jogo() {
 	}
 	
+	public void abrirTelaHistoria() {
+		telaHistoria = new TelaHistoria();
+	}
 	
 	public void abrirTelaAbertura(){
 		telaAbertura = new TelaAbertura();

@@ -11,6 +11,7 @@ import Classes.Chefao;
 import Classes.Inimigo;
 import Classes.Jogador;
 import Classes.ListasElementos;
+import br.telas.TelaHistoria;
 
 public class Exec {
 		//Cálculo de experiência para evoluir de nível
@@ -24,6 +25,11 @@ public class Exec {
 		int delay = 100;   		// Thread timer - tempo de espera antes da 1ª execução da tarefa.
 		int interval = 1000;  	// Thread timer - intervalo no qual a tarefa será executada.
 		Timer timer = new Timer();
+		TelaHistoria frame = new TelaHistoria();
+		frame.setVisible(true);
+		while(frame.isShowing()) {
+		frame.setResizable(false);
+		}
 		timer.scheduleAtFixedRate(new TimerTask() {
 			Jogador jogador;
 			ListasElementos lstElementos = new ListasElementos();
