@@ -5,12 +5,20 @@ public class Elementos{
 	private int ptsVida;
 	private int dnAtaqueBasico;
 	private String imagem;
+	private boolean atacou;
 	
 	public String getImagem() {
 		return imagem;
 	}
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
+	}
+	
+	public boolean isAtacou() {
+		return atacou;
+	}
+	public void setAtacou(boolean atacou) {
+		this.atacou = atacou;
 	}
 	public String getNome() {
 		return nome;

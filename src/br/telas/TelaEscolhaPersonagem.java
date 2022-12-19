@@ -176,7 +176,7 @@ public class TelaEscolhaPersonagem extends JFrame {
 		
 		JPanel panelSamurai = new JPanel();
 		panelSamurai.setBorder(new LineBorder(new Color(192, 192, 192), 3, true));
-		panelSamurai.setBounds(21, 53, 90, 90);
+		panelSamurai.setBounds(21, 53, 100, 100);
 		PaneSelecaoPers.add(panelSamurai);
 		panelSamurai.setLayout(null);
 		
@@ -194,12 +194,12 @@ public class TelaEscolhaPersonagem extends JFrame {
 		});
 		lblSamurai.setToolTipText("SAMURAI");
 		lblSamurai.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\escolhaSamurai.png"));
-		lblSamurai.setBounds(5, 5, 80, 80);
+		lblSamurai.setBounds(4, 3, 95, 95);
 		panelSamurai.add(lblSamurai);
 		
 		JPanel panelCavaleiro = new JPanel();
 		panelCavaleiro.setBorder(new LineBorder(new Color(192, 192, 192), 3, true));
-		panelCavaleiro.setBounds(21, 154, 90, 90);
+		panelCavaleiro.setBounds(21, 154, 100, 100);
 		PaneSelecaoPers.add(panelCavaleiro);
 		panelCavaleiro.setLayout(null);
 		
@@ -216,12 +216,12 @@ public class TelaEscolhaPersonagem extends JFrame {
 		});
 		lblCavaleiro.setToolTipText("CAVALEIRO");
 		lblCavaleiro.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\escolhaCavaleiro.png"));
-		lblCavaleiro.setBounds(5, 5, 80, 80);
+		lblCavaleiro.setBounds(4, 3, 95, 95);
 		panelCavaleiro.add(lblCavaleiro);
 		
 		JPanel panelMonge = new JPanel();
 		panelMonge.setBorder(new LineBorder(new Color(192, 192, 192), 3, true));
-		panelMonge.setBounds(121, 53, 90, 90);
+		panelMonge.setBounds(121, 53, 100, 100);
 		PaneSelecaoPers.add(panelMonge);
 		panelMonge.setLayout(null);
 		
@@ -238,12 +238,12 @@ public class TelaEscolhaPersonagem extends JFrame {
 		});
 		lblMonge.setToolTipText("MONGE");
 		lblMonge.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\escolhaMonge.png"));
-		lblMonge.setBounds(5, 5, 80, 80);
+		lblMonge.setBounds(4, 3, 95, 95);
 		panelMonge.add(lblMonge);
 		
 		JPanel panelCacador = new JPanel();
 		panelCacador.setBorder(new LineBorder(new Color(192, 192, 192), 3, true));
-		panelCacador.setBounds(121, 154, 90, 90);
+		panelCacador.setBounds(121, 154, 100, 100);
 		PaneSelecaoPers.add(panelCacador);
 		panelCacador.setLayout(null);
 		
@@ -260,7 +260,7 @@ public class TelaEscolhaPersonagem extends JFrame {
 		});
 		lblCacador.setToolTipText("CAÇADOR");
 		lblCacador.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\escolhaCacador.png"));
-		lblCacador.setBounds(5, 5, 78, 78);
+		lblCacador.setBounds(4, 3, 95, 95);
 		panelCacador.add(lblCacador);
 		
 		setLocationRelativeTo(null);

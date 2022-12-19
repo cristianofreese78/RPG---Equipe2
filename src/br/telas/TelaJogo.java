@@ -22,10 +22,16 @@ import Classes.Jogador;
 import Classes.ListasElementos;
 import Classes.Inimigo;
 import javax.swing.SwingConstants;
+import javax.swing.ButtonGroup;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaJogo extends JFrame {
 
 	private JPanel PaneTelaJogo;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 		
 	public TelaJogo(Jogador jog, ListasElementos lstElem,  Batalhas btlInim, BatalhasChefao btlChef) {
@@ -67,6 +73,7 @@ public class TelaJogo extends JFrame {
 		panelJogador.add(lblNivelPersonagem);
 		
 		JProgressBar progressExpPersonagem = new JProgressBar();
+		progressExpPersonagem.setMaximum(200);
 		progressExpPersonagem.setForeground(Color.CYAN);
 		progressExpPersonagem.setBackground(Color.LIGHT_GRAY);
 		progressExpPersonagem.setBounds(30, 55, 93, 8);
@@ -128,21 +135,38 @@ public class TelaJogo extends JFrame {
 		panelAtaques.setLayout(null);
 		
 		JRadioButton rdbtnAtaqueBasico = new JRadioButton("ATAQUE BÁSICO");
+		rdbtnAtaqueBasico.setSelected(true);
+		buttonGroup.add(rdbtnAtaqueBasico);
 		rdbtnAtaqueBasico.setForeground(Color.GRAY);
 		rdbtnAtaqueBasico.setFont(new Font("Snap ITC", Font.PLAIN, 9));
 		rdbtnAtaqueBasico.setBounds(6, 7, 123, 23);
 		panelAtaques.add(rdbtnAtaqueBasico);
 		
 		JRadioButton rdbtnAtaqueEspecial = new JRadioButton("LÃMINA MORTAL");
+		rdbtnAtaqueEspecial.setSelected(true);
+		buttonGroup.add(rdbtnAtaqueEspecial);
 		rdbtnAtaqueEspecial.setForeground(Color.GRAY);
 		rdbtnAtaqueEspecial.setFont(new Font("Snap ITC", Font.PLAIN, 9));
 		rdbtnAtaqueEspecial.setBounds(131, 7, 163, 23);
 		panelAtaques.add(rdbtnAtaqueEspecial);
 		
 		JButton btnAtacar = new JButton("");
+		btnAtacar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnAtacar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (rdbtnAtaqueBasico.isSelected()) {btnAtacar.setText("1"); /*System.out.println("Play Ataque Básico");*/}
+				if (rdbtnAtaqueEspecial.isSelected()) {btnAtacar.setText("2"); /*System.out.println("Play Ataque Especial");*/}
+				
+			}
+		});
 		btnAtacar.setToolTipText("Atacar");
 		btnAtacar.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\playIcon2.png"));
 		btnAtacar.setBounds(305, 3, 30, 30);
+		btnAtacar.setText("3");
 		panelAtaques.add(btnAtacar);
 		
 		JPanel panelMPPersonagem = new JPanel();
@@ -280,14 +304,14 @@ public class TelaJogo extends JFrame {
 		
 		if(jog.getPtsVida() > 0) {
 			Chefao chefao3 = lstElem.getListaChefao().get(2);
-			System.out.println("TELA - CARREGA DADOS DO CHEFAO2");
+			System.out.println("TELA - CARREGA DADOS DO CHEFAO3");
 			chefao3.atualizaTelaDadosChefao(labelsInim, progressInim, buttonsInim, 1);
 			btlChef.batalha(jog, chefao3, labelsJog, progressJog, labelsInim, progressInim, buttonsInim, JRadiosAtaq, JButtonsAtaq, JLabelsAtaque );
 		}
 		if(jog.getPtsVida() > 0) {
-			System.out.println("Parabéns, você finalizou o jogo !");
+			System.out.println("TELA - PERSONAGEM TERMINOU O JOGO");
 		}else {
-			System.out.println("Você Morreu!");
+			System.out.println("TELA - PERSONAGEM MORREU");
 		}
 		System.out.println("FIM DO JOGO");
 	}

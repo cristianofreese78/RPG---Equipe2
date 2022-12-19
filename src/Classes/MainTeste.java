@@ -135,7 +135,7 @@ public class MainTeste {
 			Inimigo inimigo = listaInimigo.get(escolhaArray); System.out.println(inimigo.toString());
 			
 			
-			ba.batalha(jogador,inimigo);
+			ba.batalha(jogador,inimigo,null,null,null,null,null,null,null,null);
 			listaInimigo.remove(escolhaArray);
 			System.out.println("VIDA DO JOGADOR: "+jogador.getPtsVida());
 			System.out.println("MP DO JOGADOR: "+jogador.getMpJogador());
@@ -145,13 +145,13 @@ public class MainTeste {
 			System.out.println("====================");
 		}
 		if(jogador.getPtsVida() > 0) {
-			bac.batalha(jogador,listaChefao.get(0));
+			bac.batalha(jogador,listaChefao.get(0),null,null,null,null,null,null,null,null);
 			}
 		while(listaInimigo2.size() > 0 && jogador.getPtsVida() > 0 ) {
 			Random gerador = new Random();
 			int escolhaArray2 = gerador.nextInt(listaInimigo2.size());
 			Inimigo inimigo = listaInimigo2.get(escolhaArray2); System.out.println(inimigo.toString());
-			ba.batalha(jogador,inimigo);
+			ba.batalha(jogador,inimigo,null,null,null,null,null,null,null,null);
 			listaInimigo2.remove(escolhaArray2);
 			System.out.println("VIDA DO JOGADOR: "+jogador.getPtsVida());
 			System.out.println("MP DO JOGADOR: "+jogador.getMpJogador());
@@ -163,14 +163,14 @@ public class MainTeste {
 			
 		}
 		if(jogador.getPtsVida() > 0) {
-			bac.batalha(jogador,listaChefao.get(1));
+			bac.batalha(jogador,listaChefao.get(1),null,null,null,null,null,null,null,null);
 		}
 		while(listaInimigo3.size() > 0 && jogador.getPtsVida() > 0 ) {
 			Random gerador = new Random();
 			int escolhaArray3 = gerador.nextInt(listaInimigo3.size());
 			Inimigo inimigo = listaInimigo3.get(escolhaArray3); System.out.println(inimigo.toString());
 			System.out.println("Inimigos nível 3");
-			ba.batalha(jogador,inimigo);
+			ba.batalha(jogador,inimigo,null,null,null,null,null,null,null,null);
 			listaInimigo3.remove(escolhaArray3);
 			System.out.println("VIDA DO JOGADOR: "+jogador.getPtsVida());
 			System.out.println("MP DO JOGADOR: "+jogador.getMpJogador());
@@ -181,7 +181,7 @@ public class MainTeste {
 		}
 		if(jogador.getPtsVida() > 0) {
 		System.out.println("É hora de enfrentar o Rei Esqueleto!");
-		bac.batalha(jogador,listaChefao.get(2));
+		bac.batalha(jogador,listaChefao.get(2),null,null,null,null,null,null,null,null);
 		}
 		if(jogador.getPtsVida() > 0) {
 			
