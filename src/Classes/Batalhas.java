@@ -297,10 +297,10 @@ public class Batalhas {
 					if(exp >= expParaNivel) {
 						//System.out.println("Parabéns você evoluiu de nível !");
 						nivel += 1;
-						jogador.setPtsVida((int) (jogador.getPtsVida()* 1.1 + (nivel*1.5)));
+						jogador.setPtsVida((int) (jogador.getPtsVida()* 1.1 + (nivel*8)));
 						jogador.setMpJogador(jogador.getMpJogador()+2);
-						jogador.setDnAtaqueBasico((int)(jogador.getDnAtaqueBasico()* 1.1 + (nivel*1.5)));
-						jogador.setDnAtaqueEspecial((int)(jogador.getDnAtaqueEspecial()* 1.1 + (nivel*1.5)));
+						jogador.setDnAtaqueBasico((int)(jogador.getDnAtaqueBasico()* 1.1 + (nivel*4.5)));
+						jogador.setDnAtaqueEspecial((int)(jogador.getDnAtaqueEspecial()* 1.1 + (nivel*4.5)));
 						//System.out.println("Nível: "+nivel);
 						jogador.setNvlJogador(nivel);
 						lblJog[1].setText(Integer.toString(nivel));
@@ -337,7 +337,7 @@ public class Batalhas {
 								break;
 							}
 						}	//Fim case
-						*/
+						
 						btnImgInim[0].setVisible(false);
 					}	//Fim while
 					*/
