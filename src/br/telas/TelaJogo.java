@@ -73,7 +73,7 @@ public class TelaJogo extends JFrame {
 		panelJogador.add(lblNivelPersonagem);
 		
 		JProgressBar progressExpPersonagem = new JProgressBar();
-		progressExpPersonagem.setMaximum(200);
+		progressExpPersonagem.setMaximum(500);
 		progressExpPersonagem.setForeground(Color.CYAN);
 		progressExpPersonagem.setBackground(Color.LIGHT_GRAY);
 		progressExpPersonagem.setBounds(30, 55, 93, 8);
@@ -107,16 +107,6 @@ public class TelaJogo extends JFrame {
 		lblAdversario.setFont(new Font("Snap ITC", Font.PLAIN, 11));
 		lblAdversario.setBounds(10, 11, 113, 14);
 		panelAdversario.add(lblAdversario);
-		
-		JButton btnPocao1Adversario = new JButton("");
-		btnPocao1Adversario.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\pocaoIcon2.png"));
-		btnPocao1Adversario.setBounds(20, 48, 18, 18);
-		panelAdversario.add(btnPocao1Adversario);
-		
-		JButton btnPocao2Adversario = new JButton("");
-		btnPocao2Adversario.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\pocaoIcon2.png"));
-		btnPocao2Adversario.setBounds(40, 48, 18, 18);
-		panelAdversario.add(btnPocao2Adversario);
 		
 		JLabel lblImgPersonagem = new JLabel("");
 		lblImgPersonagem.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\escolhaCavaleiro2.png"));
@@ -158,15 +148,13 @@ public class TelaJogo extends JFrame {
 		btnAtacar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (rdbtnAtaqueBasico.isSelected()) {btnAtacar.setText("1"); /*System.out.println("Play Ataque Básico");*/}
-				if (rdbtnAtaqueEspecial.isSelected()) {btnAtacar.setText("2"); /*System.out.println("Play Ataque Especial");*/}
-				
+				if (rdbtnAtaqueBasico.isSelected()) {jog.setOpcaoAtaque(1); /*btnAtacar.setText("1"); System.out.println("Play Ataque Básico");*/}
+				if (rdbtnAtaqueEspecial.isSelected()) {jog.setOpcaoAtaque(2); /*btnAtacar.setText("2"); /*System.out.println("Play Ataque Especial");*/}
 			}
 		});
 		btnAtacar.setToolTipText("Atacar");
-		btnAtacar.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\playIcon2.png"));
-		btnAtacar.setBounds(305, 3, 30, 30);
-		btnAtacar.setText("3");
+		btnAtacar.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\botaoAtaque2.png"));
+		btnAtacar.setBounds(300, 6, 30, 24);
 		panelAtaques.add(btnAtacar);
 		
 		JPanel panelMPPersonagem = new JPanel();
@@ -214,6 +202,30 @@ public class TelaJogo extends JFrame {
 		lblBatalhaSentidoAtaque.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\aguardaAtaque.png"));
 		lblBatalhaSentidoAtaque.setBounds(15, 11, 116, 39);
 		panelBatalhaStatusAtaques.add(lblBatalhaSentidoAtaque);
+		
+		JButton btnPocao1Adversario = new JButton("");
+		btnPocao1Adversario.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//System.out.println("Vida do jogador: "+vida);
+				jog.setPtsVida(jog.getPtsVida()+20);
+				progressBarVidaPersonagem.setValue(jog.getPtsVida());
+				jog.setPocao(jog.getPocao()-1);
+				lblPocoes.setText(Integer.toString(jog.getPocao()));
+				btnPocao1Adversario.setVisible(false);
+			}
+		});
+		btnPocao1Adversario.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\pocaoIcon2.png"));
+		btnPocao1Adversario.setSelectedIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\pocaoIcon2.png"));
+		btnPocao1Adversario.setBounds(155, 66, 18, 18);
+		btnPocao1Adversario.setVisible(false);
+		PaneTelaJogo.add(btnPocao1Adversario);
+		
+		JButton btnPocao2Adversario = new JButton("");
+		btnPocao2Adversario.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\pocaoIcon2.png"));
+		btnPocao2Adversario.setBounds(175, 66, 18, 18);
+		btnPocao2Adversario.setVisible(false);
+		PaneTelaJogo.add(btnPocao2Adversario);
 		
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -314,6 +326,8 @@ public class TelaJogo extends JFrame {
 			System.out.println("TELA - PERSONAGEM MORREU");
 		}
 		System.out.println("FIM DO JOGO");
+		setVisible(false);
+		dispose();
 	}
 }
 

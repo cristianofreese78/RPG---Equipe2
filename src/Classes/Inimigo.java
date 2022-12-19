@@ -40,8 +40,8 @@ public class Inimigo extends Elementos{
 				lbl[1].setToolTipText(this.getNome().toUpperCase());		//lblImgAdversario
 				pgr[0].setMaximum(this.getPtsVida());						//progressVidaAdversario
 				pgr[0].setValue(this.getPtsVida());							//progressVidaAdversario
-				btnImg[0].setVisible(false);								//btnPocao1Adversario
-				btnImg[1].setVisible(false);								//btnPocao2Adversario
+				//btnImg[0].setVisible(false);								//btnPocao1Adversario
+				//btnImg[1].setVisible(false);								//btnPocao2Adversario
 			}
 			case 2: {
 				pgr[0].setValue(this.getPtsVida());							//progressVidaAdversario

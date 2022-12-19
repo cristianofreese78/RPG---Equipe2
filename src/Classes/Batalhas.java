@@ -144,10 +144,21 @@ public class Batalhas {
 					
 					//Loop de escolha do tipo de ataque do personagem
 					while (!escolheu) {
-						escolherAtaque = Integer.parseInt(JButtonsAtaq[0].getText());
+						//escolherAtaque = Integer.parseInt(JButtonsAtaq[0].getText());
+						try {
+							TimeUnit.MILLISECONDS.sleep(200);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+						escolherAtaque = jogador.getOpcaoAtaque();
+						//System.out.println(escolherAtaque);
 						if ((escolherAtaque == 1) || (escolherAtaque == 2)) escolheu = true;
 					}
 					System.out.println("TELA - ATAQUE DO PERSONAGEM");
+					JButtonsAtaq[0].setEnabled(false);
+					btnImgInim[0].setVisible(false);
 															
 					switch(escolherAtaque) {
 						//Ataque básico
@@ -212,7 +223,8 @@ public class Batalhas {
 									flag = false;
 									jogador.setAtacou(false);
 									escolheu = false;
-									JButtonsAtaq[0].setText("3");
+									//JButtonsAtaq[0].setText("3");
+									jogador.setOpcaoAtaque(3);
 									lblAtaq[1].setText("-");
 									lblAtaq[2].setText("-");
 								}
@@ -223,12 +235,14 @@ public class Batalhas {
 					
 					//Se o personagem atacou, então aguarda 3s e executa ataque do inimigo
 					if (jogador.isAtacou()) {
-						JButtonsAtaq[0].setText("3");
+						//JButtonsAtaq[0].setText("3");
+						jogador.setOpcaoAtaque(3);
 						escolheu = false;
 						inimigo.setAtacou(false);
 						try {
 							TimeUnit.SECONDS.sleep(3);
 							System.out.println("TELA - ATAQUE DO INIMIGO");
+							JButtonsAtaq[0].setEnabled(true);
 								
 							//Ataque do inimigo
 							if (vidaInimigo > 0 && flag == true && jogador.getAtordoamento() == 0) {
@@ -246,10 +260,11 @@ public class Batalhas {
 										}
 								}
 							}
-							//Controles gerais para impedir que o botão de ataque do personagemnão seja considerado 
+							//Controles gerais para impedir que o botão de ataque do personagem não seja considerado 
 							//até finalizar o ataque do inimigo
 							inimigo.setAtacou(true);
-							JButtonsAtaq[0].setText("3");
+							//JButtonsAtaq[0].setText("3");
+							jogador.setOpcaoAtaque(3);
 						}	//	Fim try
 							catch (InterruptedException e) {
 								e.printStackTrace();
@@ -274,6 +289,7 @@ public class Batalhas {
 						qtdPocao += 1;
 						jogador.setPocao(qtdPocao);
 						lblJog[3].setText(Integer.toString(qtdPocao));
+						btnImgInim[0].setVisible(true);
 					}
 					if (eventos == 1) {
 						jogador.setPtsVida(jogador.getPtsVida()-10);
@@ -289,16 +305,20 @@ public class Batalhas {
 						jogador.setNvlJogador(nivel);
 						lblJog[1].setText(Integer.toString(nivel));
 					}
-					flag = false;
-					while(flag == false && qtdPocao > 0) {
+					//flag = false;
+					/*
+					while(flag == false && qtdPocao > 0 && (numeroEscolhido <= 20)) {
+						
+						btnImgInim[0].setVisible(true);
+						
 						Object[] opcoes = { "Sim", "Não" };
-					    int escolherPocao = JOptionPane.showOptionDialog(null,
+					    int escolherPocao = (JOptionPane.showOptionDialog(null,
 					    				"Usar poção de cura?",
 					    				"Você ganhou uma poção de cura", JOptionPane.YES_NO_OPTION,
-					    				JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
+					    				JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0])) + 1;
 					    //System.out.println("Deseja utilizar uma poção de cura? Recupera 20 de vida\n1 para sim e 2 para não");
 						//int escolherPocao = scan.nextInt();
-						switch(escolherPocao+1) {
+						switch(escolherPocao) {
 							case 1:{
 								//System.out.println("Você escolheu utilizar uma poção");
 								vida += 20;
@@ -317,7 +337,10 @@ public class Batalhas {
 								break;
 							}
 						}	//Fim case
+						*/
+						btnImgInim[0].setVisible(false);
 					}	//Fim while
+					*/
 				}	//Fim if
 				if(vida<=0) {
 					jogador.setPtsVida(vida);

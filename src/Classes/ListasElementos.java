@@ -95,7 +95,7 @@ public class ListasElementos {
 		this.listaJogador.add(new Jogador("Monge", 90, 12, "Ataque Concentrado", 22, 0, 1, 20,0,0,1,0,0,
 										  "C:\\RPG---Equipe2\\src\\Img\\escolhaMonge.png"));			
 		//Efeito : Recuperação de vida - Recupera 10% do dano causado.			
-		this.listaJogador.add(new Jogador("Caçador", 95, 11, "Sedento por Luta", 19, 0, 1, 20,0,0,0,0,1,
+		this.listaJogador.add(new Jogador("Caçador", 95, 11, "Sedento por Luta", 55, 0, 1, 20,0,0,0,0,1,
 										  "C:\\RPG---Equipe2\\src\\Img\\escolhaCacador.png"));			
 	}
 }
