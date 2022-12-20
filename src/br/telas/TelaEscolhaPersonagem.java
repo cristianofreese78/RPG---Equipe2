@@ -1,3 +1,5 @@
+//Tela de escolha do personagem
+
 package br.telas;
 
 import java.awt.EventQueue;
@@ -24,11 +26,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class TelaEscolhaPersonagem extends JFrame {
-	
-	
 	private JPanel PaneSelecaoPers;
 	public Jogador jogAux = new Jogador();
 	
+	//Declaração de metodos estáticos auxiliares
+	//Retorna o indice do jogador escolhido dentro de uma lista de jogadores
 	public static int ObtemIndice(String nomePers, ArrayList<Jogador> lstJg) {
 		int indice = 0;
 		for (int i=0; i <=3; i++) {
@@ -37,6 +39,7 @@ public class TelaEscolhaPersonagem extends JFrame {
 		return 0; 
 	}
 	
+	//Retorna o efeito do ataque especial para o jogador referenciado ou padrão se não houver efeito especifico
 	public static String GetEfeitoJog(Jogador jg) {
 		if (jg.getAtordoamento() == 1) return "Atordoamento";
 	    if (jg.getSangramento() == 1) return "Sangramento";
@@ -45,8 +48,9 @@ public class TelaEscolhaPersonagem extends JFrame {
 		return "Efeito";
 	}
 	
+	//Atualiza o card com os dados do jogador selecionado pela imagem dentro da tela de escolh
 	public static void atualizaCard(Jogador jg, JLabel[] lbl) {
-		lbl[0].setText(jg.getNome());						//lblNomePers
+		lbl[0].setText(jg.getNome().toUpperCase());						//lblNomePers
 		lbl[1].setText(Integer.toString(jg.getPtsVida()));	//lblVidaPers
 		lbl[2].setText(Integer.toString(jg.getMpJogador()));		//lblMPPers
 		lbl[3].setText(Integer.toString(jg.getDnAtaqueBasico()));	//lblDanoBasicoPers
@@ -54,7 +58,8 @@ public class TelaEscolhaPersonagem extends JFrame {
 		lbl[5].setText(jg.getTpAtaqueEspecial());			//lblNomeAtaqueEspPers
 		lbl[6].setText(GetEfeitoJog(jg));					//lblEfeitoAtaquePers
 	}
-
+	
+	//Metodos auxiliares para definir ou receber dados do jogador atual
 	public Jogador getJogAux() {
 		return jogAux;
 	}
@@ -63,14 +68,15 @@ public class TelaEscolhaPersonagem extends JFrame {
 		this.jogAux = jogAux;
 	}
 	
+	//Metodo principal da tela de escolha - Carrega todos os objetos visuais e eventos necessários
 	public TelaEscolhaPersonagem(ArrayList<Jogador> lstJog) {
+		setResizable(false);
 						
 		setFont(new Font("Snap ITC", Font.PLAIN, 12));
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		PaneSelecaoPers = new JPanel();
-		PaneSelecaoPers.setBackground(new Color(204, 255, 204));
+		PaneSelecaoPers.setBackground(new Color(95, 158, 160));
 		PaneSelecaoPers.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(PaneSelecaoPers);
@@ -79,6 +85,7 @@ public class TelaEscolhaPersonagem extends JFrame {
 		JPanel panelCard = new JPanel();
 		panelCard.addMouseListener(new MouseAdapter() {
 			@Override
+			//Fecha a tela de escolha de personagem. A tela irá retornar o jogador selecionado
 			public void mouseClicked(MouseEvent e) {
 				setVisible(false);
 				dispose();
@@ -91,7 +98,7 @@ public class TelaEscolhaPersonagem extends JFrame {
 		panelCard.setLayout(null);
 		
 		JLabel lblSelecaoPers = new JLabel("SELEÇÃO DE PERSONAGEM");
-		lblSelecaoPers.setForeground(Color.GRAY);
+		lblSelecaoPers.setForeground(Color.BLUE);
 		lblSelecaoPers.setFont(new Font("Snap ITC", Font.PLAIN, 18));
 		lblSelecaoPers.setBounds(20, 14, 319, 14);
 		PaneSelecaoPers.add(lblSelecaoPers);
@@ -109,13 +116,13 @@ public class TelaEscolhaPersonagem extends JFrame {
 		lblVida.setFont(new Font("Snap ITC", Font.PLAIN, 12));
 		
 		JLabel lblNomePers = new JLabel("SAMURAI");
-		lblNomePers.setForeground(Color.ORANGE);
+		lblNomePers.setForeground(Color.BLUE);
 		lblNomePers.setFont(new Font("Snap ITC", Font.PLAIN, 12));
 		lblNomePers.setBounds(10, 19, 140, 14);
 		panelCard.add(lblNomePers);
 		
 		JLabel lblVidaPers = new JLabel("110");
-		lblVidaPers.setForeground(Color.ORANGE);
+		lblVidaPers.setForeground(Color.BLUE);
 		lblVidaPers.setFont(new Font("Snap ITC", Font.PLAIN, 12));
 		lblVidaPers.setBounds(10, 52, 54, 14);
 		panelCard.add(lblVidaPers);
@@ -127,7 +134,7 @@ public class TelaEscolhaPersonagem extends JFrame {
 		panelCard.add(lblAtaqueBasico);
 		
 		JLabel lblDanoBasicoPers = new JLabel("9");
-		lblDanoBasicoPers.setForeground(Color.ORANGE);
+		lblDanoBasicoPers.setForeground(Color.BLUE);
 		lblDanoBasicoPers.setFont(new Font("Snap ITC", Font.PLAIN, 12));
 		lblDanoBasicoPers.setBounds(10, 85, 140, 14);
 		panelCard.add(lblDanoBasicoPers);
@@ -139,7 +146,7 @@ public class TelaEscolhaPersonagem extends JFrame {
 		panelCard.add(lblAtaqueEspecial);
 		
 		JLabel lblNomeAtaqueEspPers = new JLabel("LÂMINA MORTAL");
-		lblNomeAtaqueEspPers.setForeground(Color.ORANGE);
+		lblNomeAtaqueEspPers.setForeground(Color.BLUE);
 		lblNomeAtaqueEspPers.setFont(new Font("Snap ITC", Font.PLAIN, 12));
 		lblNomeAtaqueEspPers.setBounds(10, 118, 140, 14);
 		panelCard.add(lblNomeAtaqueEspPers);
@@ -151,13 +158,13 @@ public class TelaEscolhaPersonagem extends JFrame {
 		panelCard.add(lblMP);
 		
 		JLabel lblMPPers = new JLabel("20");
-		lblMPPers.setForeground(Color.ORANGE);
+		lblMPPers.setForeground(Color.BLUE);
 		lblMPPers.setFont(new Font("Snap ITC", Font.PLAIN, 12));
 		lblMPPers.setBounds(105, 52, 37, 14);
 		panelCard.add(lblMPPers);
 		
 		JLabel lblDanoEspecialPers = new JLabel("18");
-		lblDanoEspecialPers.setForeground(Color.ORANGE);
+		lblDanoEspecialPers.setForeground(Color.BLUE);
 		lblDanoEspecialPers.setFont(new Font("Snap ITC", Font.PLAIN, 12));
 		lblDanoEspecialPers.setBounds(10, 131, 140, 14);
 		panelCard.add(lblDanoEspecialPers);
@@ -169,7 +176,7 @@ public class TelaEscolhaPersonagem extends JFrame {
 		panelCard.add(lblEfeito);
 		
 		JLabel lblEfeitoAtaquePers = new JLabel("SANGRAMENTO");
-		lblEfeitoAtaquePers.setForeground(Color.ORANGE);
+		lblEfeitoAtaquePers.setForeground(Color.BLUE);
 		lblEfeitoAtaquePers.setFont(new Font("Snap ITC", Font.PLAIN, 12));
 		lblEfeitoAtaquePers.setBounds(10, 164, 140, 14);
 		panelCard.add(lblEfeitoAtaquePers);
@@ -184,6 +191,7 @@ public class TelaEscolhaPersonagem extends JFrame {
 		lblSamurai.addMouseListener(new MouseAdapter() {
 			
 			@Override
+			//Atualiza o card com os dados do jogador Samurai e atribui como jogador escolhido
 			public void mouseClicked(MouseEvent e) {
 				JLabel[] labels = {lblNomePers,lblVidaPers,lblMPPers,lblDanoBasicoPers, lblDanoEspecialPers, 
 						          lblNomeAtaqueEspPers, lblEfeitoAtaquePers};
@@ -206,6 +214,7 @@ public class TelaEscolhaPersonagem extends JFrame {
 		JLabel lblCavaleiro = new JLabel("Cavaleiro");
 		lblCavaleiro.addMouseListener(new MouseAdapter() {
 			@Override
+			//Atualiza o card com os dados do jogador Cavaleiro e atribui como jogador escolhido
 			public void mouseClicked(MouseEvent e) {
 				JLabel[] labels = {lblNomePers,lblVidaPers,lblMPPers,lblDanoBasicoPers, lblDanoEspecialPers, 
 				          lblNomeAtaqueEspPers, lblEfeitoAtaquePers};
@@ -228,6 +237,7 @@ public class TelaEscolhaPersonagem extends JFrame {
 		JLabel lblMonge = new JLabel("Monge");
 		lblMonge.addMouseListener(new MouseAdapter() {
 			@Override
+			//Atualiza o card com os dados do jogador Monge e atribui como jogador escolhido
 			public void mouseClicked(MouseEvent e) {
 				JLabel[] labels = {lblNomePers,lblVidaPers,lblMPPers,lblDanoBasicoPers, lblDanoEspecialPers, 
 				          lblNomeAtaqueEspPers, lblEfeitoAtaquePers};
@@ -250,6 +260,7 @@ public class TelaEscolhaPersonagem extends JFrame {
 		JLabel lblCacador = new JLabel("Caçador");
 		lblCacador.addMouseListener(new MouseAdapter() {
 			@Override
+			//Atualiza o card com os dados do jogador Caçador e atribui como jogador escolhido
 			public void mouseClicked(MouseEvent e) {
 				JLabel[] labels = {lblNomePers,lblVidaPers,lblMPPers,lblDanoBasicoPers, lblDanoEspecialPers, 
 				          lblNomeAtaqueEspPers, lblEfeitoAtaquePers};
@@ -268,6 +279,7 @@ public class TelaEscolhaPersonagem extends JFrame {
 		
 		addWindowListener(new WindowAdapter() {
 			@Override
+			//Atualiza o card automaticamente com os dados do jogador Caçador quando a tela de escolha é instanciada
 			public void windowOpened(WindowEvent e) {
 				JLabel[] labels = {lblNomePers,lblVidaPers,lblMPPers,lblDanoBasicoPers, lblDanoEspecialPers, 
 				          lblNomeAtaqueEspPers, lblEfeitoAtaquePers};

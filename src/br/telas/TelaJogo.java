@@ -1,3 +1,4 @@
+//Tela do jogo - Responsável por todas as interações e atualizações das batalhas entre o jogador e os inimigos e chefões
 package br.telas;
 
 import java.awt.Color;
@@ -29,17 +30,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class TelaJogo extends JFrame {
-
 	private JPanel PaneTelaJogo;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
-		
+	//Metodo principal da tela do jogo - Carrega todos os objetos visuais e eventos necessários.
+	//Carrega também toda implementação necessária para as batalhas passando objetos da tela como parâmetros para
+	//as devidas atualizações durante os processamentos internos das classes batalha e batalha chefão.
 	public TelaJogo(Jogador jog, ListasElementos lstElem,  Batalhas btlInim, BatalhasChefao btlChef) {
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 536, 401);
 		PaneTelaJogo = new JPanel();
-		PaneTelaJogo.setBackground(new Color(204, 255, 204));
+		PaneTelaJogo.setBackground(new Color(95, 158, 160));
 		PaneTelaJogo.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(PaneTelaJogo);
@@ -49,48 +50,55 @@ public class TelaJogo extends JFrame {
 		panelJogador.setForeground(new Color(0, 255, 128));
 		panelJogador.setBackground(new Color(255, 250, 205));
 		panelJogador.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, new Color(128, 0, 0), null));
-		panelJogador.setBounds(10, 11, 135, 73);
+		panelJogador.setBounds(10, 11, 224, 73);
 		PaneTelaJogo.add(panelJogador);
 		panelJogador.setLayout(null);
 		
 		JProgressBar progressBarVidaPersonagem = new JProgressBar();
 		progressBarVidaPersonagem.setForeground(Color.GREEN);
 		progressBarVidaPersonagem.setBackground(Color.LIGHT_GRAY);
-		progressBarVidaPersonagem.setBounds(20, 30, 103, 14);
+		progressBarVidaPersonagem.setBounds(20, 30, 183, 14);
 		panelJogador.add(progressBarVidaPersonagem);
 		progressBarVidaPersonagem.setValue(90);
 		
 		JLabel lblPersonagem = new JLabel("SAMURAI");
 		lblPersonagem.setForeground(Color.GRAY);
-		lblPersonagem.setFont(new Font("Snap ITC", Font.PLAIN, 11));
-		lblPersonagem.setBounds(10, 11, 76, 14);
+		lblPersonagem.setFont(new Font("Snap ITC", Font.PLAIN, 12));
+		lblPersonagem.setBounds(10, 11, 135, 14);
 		panelJogador.add(lblPersonagem);
 		
-		JLabel lblNivelPersonagem = new JLabel("Lv 9");
+		JLabel lblNivelPersonagem = new JLabel("9");
+		lblNivelPersonagem.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNivelPersonagem.setForeground(Color.GRAY);
-		lblNivelPersonagem.setFont(new Font("Snap ITC", Font.PLAIN, 11));
-		lblNivelPersonagem.setBounds(96, 6, 31, 25);
+		lblNivelPersonagem.setFont(new Font("Snap ITC", Font.PLAIN, 12));
+		lblNivelPersonagem.setBounds(183, 6, 20, 25);
 		panelJogador.add(lblNivelPersonagem);
 		
 		JProgressBar progressExpPersonagem = new JProgressBar();
-		progressExpPersonagem.setMaximum(500);
+		progressExpPersonagem.setMaximum(1000);
 		progressExpPersonagem.setForeground(Color.CYAN);
 		progressExpPersonagem.setBackground(Color.LIGHT_GRAY);
-		progressExpPersonagem.setBounds(30, 55, 93, 8);
+		progressExpPersonagem.setBounds(38, 55, 165, 8);
 		panelJogador.add(progressExpPersonagem);
 		progressExpPersonagem.setValue(30);
 		
 		JLabel lblExpPersonagem = new JLabel("EXP");
-		lblExpPersonagem.setForeground(Color.ORANGE);
+		lblExpPersonagem.setForeground(Color.BLUE);
 		lblExpPersonagem.setBackground(Color.WHITE);
-		lblExpPersonagem.setFont(new Font("Snap ITC", Font.PLAIN, 7));
-		lblExpPersonagem.setBounds(10, 51, 20, 14);
+		lblExpPersonagem.setFont(new Font("Snap ITC", Font.PLAIN, 9));
+		lblExpPersonagem.setBounds(10, 51, 28, 14);
 		panelJogador.add(lblExpPersonagem);
+		
+		JLabel lblIDNivelPersonagem = new JLabel("LV");
+		lblIDNivelPersonagem.setForeground(Color.BLUE);
+		lblIDNivelPersonagem.setFont(new Font("Snap ITC", Font.PLAIN, 12));
+		lblIDNivelPersonagem.setBounds(155, 11, 33, 14);
+		panelJogador.add(lblIDNivelPersonagem);
 		
 		JPanel panelAdversario = new JPanel();
 		panelAdversario.setLayout(null);
 		panelAdversario.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, new Color(165, 42, 42), null));
-		panelAdversario.setBounds(289, 11, 135, 73);
+		panelAdversario.setBounds(285, 11, 224, 73);
 		panelAdversario.setForeground(new Color(0, 255, 128));
 		panelAdversario.setBackground(new Color(255, 250, 205));
 		PaneTelaJogo.add(panelAdversario);
@@ -99,28 +107,30 @@ public class TelaJogo extends JFrame {
 		progressVidaAdversario.setForeground(Color.GREEN);
 		progressVidaAdversario.setBackground(Color.LIGHT_GRAY);
 		progressVidaAdversario.setValue(45);
-		progressVidaAdversario.setBounds(20, 30, 103, 14);
+		progressVidaAdversario.setBounds(20, 30, 183, 14);
 		panelAdversario.add(progressVidaAdversario);
 		
 		JLabel lblAdversario = new JLabel("LOBISOMEN");
 		lblAdversario.setForeground(Color.GRAY);
-		lblAdversario.setFont(new Font("Snap ITC", Font.PLAIN, 11));
-		lblAdversario.setBounds(10, 11, 113, 14);
+		lblAdversario.setFont(new Font("Snap ITC", Font.PLAIN, 12));
+		lblAdversario.setBounds(10, 11, 204, 14);
 		panelAdversario.add(lblAdversario);
 		
 		JLabel lblImgPersonagem = new JLabel("");
-		lblImgPersonagem.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\escolhaCavaleiro2.png"));
-		lblImgPersonagem.setBounds(10, 95, 108, 108);
+		lblImgPersonagem.setHorizontalAlignment(SwingConstants.CENTER);
+		lblImgPersonagem.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\escolhaCacador2.png"));
+		lblImgPersonagem.setBounds(10, 111, 150, 150);
 		PaneTelaJogo.add(lblImgPersonagem);
 		
 		JLabel lblImgAdversario = new JLabel("");
-		lblImgAdversario.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\lobisomenIcon2.png"));
-		lblImgAdversario.setBounds(315, 95, 109, 108);
+		lblImgAdversario.setHorizontalAlignment(SwingConstants.CENTER);
+		lblImgAdversario.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\escolhaReiEsqueleto.png"));
+		lblImgAdversario.setBounds(357, 111, 150, 150);
 		PaneTelaJogo.add(lblImgAdversario);
 		
 		JPanel panelAtaques = new JPanel();
 		panelAtaques.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panelAtaques.setBounds(10, 214, 338, 36);
+		panelAtaques.setBounds(10, 300, 392, 51);
 		PaneTelaJogo.add(panelAtaques);
 		panelAtaques.setLayout(null);
 		
@@ -128,16 +138,16 @@ public class TelaJogo extends JFrame {
 		rdbtnAtaqueBasico.setSelected(true);
 		buttonGroup.add(rdbtnAtaqueBasico);
 		rdbtnAtaqueBasico.setForeground(Color.GRAY);
-		rdbtnAtaqueBasico.setFont(new Font("Snap ITC", Font.PLAIN, 9));
-		rdbtnAtaqueBasico.setBounds(6, 7, 123, 23);
+		rdbtnAtaqueBasico.setFont(new Font("Snap ITC", Font.PLAIN, 11));
+		rdbtnAtaqueBasico.setBounds(6, 14, 154, 23);
 		panelAtaques.add(rdbtnAtaqueBasico);
 		
-		JRadioButton rdbtnAtaqueEspecial = new JRadioButton("LÃMINA MORTAL");
+		JRadioButton rdbtnAtaqueEspecial = new JRadioButton("ATAQUE ESPECIAL");
 		rdbtnAtaqueEspecial.setSelected(true);
 		buttonGroup.add(rdbtnAtaqueEspecial);
 		rdbtnAtaqueEspecial.setForeground(Color.GRAY);
-		rdbtnAtaqueEspecial.setFont(new Font("Snap ITC", Font.PLAIN, 9));
-		rdbtnAtaqueEspecial.setBounds(131, 7, 163, 23);
+		rdbtnAtaqueEspecial.setFont(new Font("Snap ITC", Font.PLAIN, 11));
+		rdbtnAtaqueEspecial.setBounds(162, 14, 163, 23);
 		panelAtaques.add(rdbtnAtaqueEspecial);
 		
 		JButton btnAtacar = new JButton("");
@@ -147,46 +157,62 @@ public class TelaJogo extends JFrame {
 		});
 		btnAtacar.addMouseListener(new MouseAdapter() {
 			@Override
+			//Executa o ataque ao inimigo ou chefão. Atribui um valor de referência a ser usado nas classes batalha e
+			//batalha chefao de modo a identificar o tipo de ataque (básico ou especial)
 			public void mouseClicked(MouseEvent e) {
-				if (rdbtnAtaqueBasico.isSelected()) {jog.setOpcaoAtaque(1); /*btnAtacar.setText("1"); System.out.println("Play Ataque Básico");*/}
-				if (rdbtnAtaqueEspecial.isSelected()) {jog.setOpcaoAtaque(2); /*btnAtacar.setText("2"); /*System.out.println("Play Ataque Especial");*/}
+				if (rdbtnAtaqueBasico.isSelected()) {jog.setOpcaoAtaque(1);}
+				if (rdbtnAtaqueEspecial.isSelected()) {jog.setOpcaoAtaque(2);}
 			}
 		});
 		btnAtacar.setToolTipText("Atacar");
-		btnAtacar.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\botaoAtaque2.png"));
-		btnAtacar.setBounds(300, 6, 30, 24);
+		btnAtacar.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\botaoAtaque4.png"));
+		btnAtacar.setBounds(335, 6, 50, 40);
 		panelAtaques.add(btnAtacar);
 		
 		JPanel panelMPPersonagem = new JPanel();
 		panelMPPersonagem.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panelMPPersonagem.setBounds(347, 214, 77, 36);
+		panelMPPersonagem.setBounds(402, 300, 108, 51);
 		PaneTelaJogo.add(panelMPPersonagem);
 		panelMPPersonagem.setLayout(null);
 		
-		JLabel lblMPPersonagem = new JLabel("MP 5");
+		JLabel lblMPPersonagem = new JLabel("5");
+		lblMPPersonagem.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMPPersonagem.setForeground(Color.GRAY);
 		lblMPPersonagem.setFont(new Font("Snap ITC", Font.PLAIN, 11));
-		lblMPPersonagem.setBounds(21, 11, 46, 14);
+		lblMPPersonagem.setBounds(42, 7, 25, 14);
 		panelMPPersonagem.add(lblMPPersonagem);
 		
 		JLabel lblPocoes = new JLabel("0");
+		lblPocoes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPocoes.setForeground(Color.GRAY);
 		lblPocoes.setFont(new Font("Snap ITC", Font.PLAIN, 11));
-		lblPocoes.setBounds(53, 11, 14, 14);
+		lblPocoes.setBounds(42, 26, 25, 14);
 		panelMPPersonagem.add(lblPocoes);
+		
+		JLabel lblIDMPPersonagem = new JLabel("MP");
+		lblIDMPPersonagem.setForeground(Color.BLUE);
+		lblIDMPPersonagem.setFont(new Font("Snap ITC", Font.PLAIN, 11));
+		lblIDMPPersonagem.setBounds(10, 7, 33, 14);
+		panelMPPersonagem.add(lblIDMPPersonagem);
+		
+		JLabel lblIDPocoes = new JLabel("P");
+		lblIDPocoes.setForeground(Color.BLUE);
+		lblIDPocoes.setFont(new Font("Snap ITC", Font.PLAIN, 11));
+		lblIDPocoes.setBounds(10, 26, 25, 14);
+		panelMPPersonagem.add(lblIDPocoes);
 		lblImgPersonagem.setIcon(new ImageIcon(jog.getImagem()));
-		lblImgPersonagem.setToolTipText(jog.getNome().toUpperCase());
+		lblImgPersonagem.setToolTipText("");
 		
 		JPanel panelBatalhaStatusAtaques = new JPanel();
 		panelBatalhaStatusAtaques.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panelBatalhaStatusAtaques.setBounds(145, 95, 146, 108);
+		panelBatalhaStatusAtaques.setBounds(184, 132, 146, 108);
 		PaneTelaJogo.add(panelBatalhaStatusAtaques);
 		panelBatalhaStatusAtaques.setLayout(null);
 		
 		JLabel lblBatalhaTipoAtaque = new JLabel("-");
 		lblBatalhaTipoAtaque.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBatalhaTipoAtaque.setForeground(Color.RED);
-		lblBatalhaTipoAtaque.setFont(new Font("Snap ITC", Font.PLAIN, 10));
+		lblBatalhaTipoAtaque.setFont(new Font("Snap ITC", Font.PLAIN, 13));
 		lblBatalhaTipoAtaque.setBounds(0, 61, 146, 14);
 		panelBatalhaStatusAtaques.add(lblBatalhaTipoAtaque);
 		
@@ -194,7 +220,7 @@ public class TelaJogo extends JFrame {
 		lblBatalhaDanoAtaque.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBatalhaDanoAtaque.setForeground(Color.RED);
 		lblBatalhaDanoAtaque.setBackground(Color.WHITE);
-		lblBatalhaDanoAtaque.setFont(new Font("Snap ITC", Font.PLAIN, 10));
+		lblBatalhaDanoAtaque.setFont(new Font("Snap ITC", Font.PLAIN, 13));
 		lblBatalhaDanoAtaque.setBounds(0, 83, 146, 14);
 		panelBatalhaStatusAtaques.add(lblBatalhaDanoAtaque);
 		
@@ -206,8 +232,8 @@ public class TelaJogo extends JFrame {
 		JButton btnPocao1Adversario = new JButton("");
 		btnPocao1Adversario.addMouseListener(new MouseAdapter() {
 			@Override
+			//Atribui pontos de vida extra ao jogador devido ao ganho de uma poção, removendo o botão após o clique
 			public void mouseClicked(MouseEvent e) {
-				//System.out.println("Vida do jogador: "+vida);
 				jog.setPtsVida(jog.getPtsVida()+20);
 				progressBarVidaPersonagem.setValue(jog.getPtsVida());
 				jog.setPocao(jog.getPocao()-1);
@@ -217,15 +243,16 @@ public class TelaJogo extends JFrame {
 		});
 		btnPocao1Adversario.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\pocaoIcon2.png"));
 		btnPocao1Adversario.setSelectedIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\pocaoIcon2.png"));
-		btnPocao1Adversario.setBounds(155, 66, 18, 18);
+		btnPocao1Adversario.setBounds(240, 66, 18, 18);
 		btnPocao1Adversario.setVisible(false);
 		PaneTelaJogo.add(btnPocao1Adversario);
 		
-		JButton btnPocao2Adversario = new JButton("");
-		btnPocao2Adversario.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\pocaoIcon2.png"));
-		btnPocao2Adversario.setBounds(175, 66, 18, 18);
-		btnPocao2Adversario.setVisible(false);
-		PaneTelaJogo.add(btnPocao2Adversario);
+		JButton btnEfeitoAtaqueJogador = new JButton("");
+		btnEfeitoAtaqueJogador.setToolTipText("");
+		btnEfeitoAtaqueJogador.setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\efeitoSangramento.png"));
+		btnEfeitoAtaqueJogador.setBounds(240, 11, 18, 18);
+		btnEfeitoAtaqueJogador.setVisible(false);
+		PaneTelaJogo.add(btnEfeitoAtaqueJogador);
 		
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -237,7 +264,7 @@ public class TelaJogo extends JFrame {
 		
 		JLabel[] labelsInim = {lblAdversario, lblImgAdversario};
 		JProgressBar[] progressInim = {progressVidaAdversario};
-		JButton[] buttonsInim = {btnPocao1Adversario, btnPocao2Adversario};
+		JButton[] buttonsInim = {btnPocao1Adversario, btnEfeitoAtaqueJogador};
 		
 		//Vetor contendo opção de ataque básico ou especial e executar ação
 		JRadioButton[] JRadiosAtaq = {rdbtnAtaqueBasico,rdbtnAtaqueEspecial} ;
@@ -250,6 +277,7 @@ public class TelaJogo extends JFrame {
 		System.out.println("TELA - CARREGA DADOS DO JOGADOR");
 		jog.atualizaTelaDadosJogador(labelsJog, progressJog, 1);
 		
+		//Inicio das batalhas com o jogador definido
 		//1a Rodada
 		while(lstElem.getListaInimigo1().size() > 0 && jog.getPtsVida() > 0 ) {
 			Random gerador = new Random();
@@ -320,6 +348,7 @@ public class TelaJogo extends JFrame {
 			chefao3.atualizaTelaDadosChefao(labelsInim, progressInim, buttonsInim, 1);
 			btlChef.batalha(jog, chefao3, labelsJog, progressJog, labelsInim, progressInim, buttonsInim, JRadiosAtaq, JButtonsAtaq, JLabelsAtaque );
 		}
+		//Definição do final do jogo
 		if(jog.getPtsVida() > 0) {
 			System.out.println("TELA - PERSONAGEM TERMINOU O JOGO");
 		}else {

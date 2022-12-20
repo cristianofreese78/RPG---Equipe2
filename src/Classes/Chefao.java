@@ -1,3 +1,5 @@
+//Classe responsável pelos atributos e métodos dos chefoes herdando todas os demais atributos em comum das classes
+//Elementos e AtaqueEspecial.
 package Classes;
 
 import javax.swing.ImageIcon;
@@ -19,7 +21,7 @@ public class Chefao extends AtaqueEspecial{
 	
 	@Override
 	public String toString() {
-		
+		//Formata os dados do objeto em um buffer String
 		StringBuffer stringBuffer = new StringBuffer();
 		stringBuffer.append("\nNome: ");
 		stringBuffer.append(this.getNome());
@@ -34,6 +36,7 @@ public class Chefao extends AtaqueEspecial{
 		return stringBuffer.toString();
 	}
 	
+	//Atualiza (2) ou exibe (1) inicialmente na tela do jogo os dados do chefao atual.
 	public void atualizaTelaDadosChefao(JLabel[] lbl, JProgressBar[] pgr, JButton[] btnImg, int opcao) {
 		switch(opcao) {
 			case 1: {

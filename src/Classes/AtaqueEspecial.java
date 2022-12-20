@@ -1,3 +1,4 @@
+//Classe resposável pelos atributos de ataque especial herdando os atributos comuns a todos os elementos
 package Classes;
 
 public class AtaqueEspecial extends Elementos{
@@ -5,7 +6,6 @@ public class AtaqueEspecial extends Elementos{
 	private String tpAtaqueEspecial;
 	private int mpJogador;
 		
-	
 	
 	public int getMpJogador() {
 		return mpJogador;
@@ -28,6 +28,7 @@ public class AtaqueEspecial extends Elementos{
 		this.tpAtaqueEspecial = tpAtaqueEspecial;
 	}
 	
+	//Retorna um vetor com as caracteristicas de ataques especiais dos personagens baseados no tipo de ataque
 	public int[] getEfeitosAtaqueEspecial() {
 						
 		//[x dano extra/rodada, x% dano critico, dano dobro/ataque, x% chance bloqueio ataque inimigo, x rodadas bloqueio, recupera x% dano, incrementa x% de dano/rodada, dano]

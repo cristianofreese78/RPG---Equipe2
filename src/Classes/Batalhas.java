@@ -1,3 +1,5 @@
+//Classe reponsável pelos metodos e atributos relacionados as batalhas como inimigos
+//O metodo principal batalha, recebe como parâmetro todos os componentes da tela do jogo para as atualizações dinâmicas
 package Classes;
 
 import java.awt.Color;
@@ -56,14 +58,12 @@ public class Batalhas {
 		if(jogador.getNome() == "Cavaleiro") {
 			//System.out.println("Efeito passivo: Sangramento");
 			//System.out.println("O inimigo perdeu 5 de vida");
-			JOptionPane.showMessageDialog(null, "Efeito passivo (Sangramento): Inimigo sofreu 5 de dano", null,1);
 			jogador.setSangramento(1);
 			return vidaInimigo -= jogador.getDnAtaqueEspecial();
 		}else if(jogador.getNome() == "Samurai") {
 			if(numeroEscolhido <= 25) {
 			//System.out.println("O Samurai acertou um ataque crítico ! ");
 			//System.out.println("Dano: "+jogador.getDnAtaqueEspecial()*2);
-			JOptionPane.showMessageDialog(null, "Ataque crítico: ! Inimigo sofreu dano duplo", null,1);
 			jogador.setCritico(1);
 			return critico = 1;
 			}else{
@@ -74,7 +74,6 @@ public class Batalhas {
 			if(numeroEscolhido <= 25) {
 			//System.out.println("O Monge acertou um atordoamento !");
 			//System.out.println("O Inimigo não atacará na próxima rodada");
-			JOptionPane.showMessageDialog(null, "Atordoamento: ! Inimigo sem ação na próxima rodada", null,1);
 			jogador.setAtordoamento(1);
 			return atordoamento;
 			}else {
@@ -85,7 +84,6 @@ public class Batalhas {
 			jogador.setSedento(1);
 			//System.out.println("Efeito passivo: Sedento por luta");
 			//System.out.println("O Caçador recupera 10% do dano causado");
-			JOptionPane.showMessageDialog(null, "Atordoamento (Sedento por luta): O Caçador recupera 10% do dano", null,1);
 			return vida += (jogador.getDnAtaqueEspecial()*0.20);
 			
 		}
@@ -98,7 +96,7 @@ public class Batalhas {
 		
 		//lblInim[0] lblAdversario, lblInim[1] lblImgAdversario
 		//pgrInim[0] progressVidaAdversario
-		//btnImgInim[0] btnPocao1Adversario, btnImg[1] btnPocao2Adversario
+		//btnImgInim[0] btnPocao1Adversario, btnImgInim[1] btnEfeitoAtaqueJogador
 		
 		//JRadAtaq[0] rdbtnAtaqueBasico, JRadAtaq[1] rdbtnAtaqueEspecial
 		//JButtonsAtaq[0] btnAtacar
@@ -195,17 +193,32 @@ public class Batalhas {
 								lblAtaq[2].setText(Integer.toString(jogador.getDnAtaqueEspecial()));
 								numeroEscolhido = calcularChance();
 								int passiva = passivas(jogador,inimigo,numeroEscolhido,jogador.getAtordoamento(),critico);
+								System.out.println(passiva);
 								//System.out.println("MP: " +mpAtual);
 								lblJog[2].setText(Integer.toString(mpAtual));
 								jogador.setMpJogador(mpAtual);
 								if (jogador.getCritico() == 1) {
 									vidaInimigo -= jogador.getDnAtaqueEspecial();
+									btnImgInim[1].setVisible(true);
+									btnImgInim[1].setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\efeitoCritico.png"));
+									btnImgInim[1].setToolTipText("Critico - Inimigo sofreu dano duplo");
 								}
 								if (jogador.getSangramento() == 1) {
 									vidaInimigo -= 5;
+									btnImgInim[1].setVisible(true);
+									btnImgInim[1].setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\efeitoSangramento.png"));
+									btnImgInim[1].setToolTipText("Sangramento - Inimigo sofreu 5 de dano");
 								}
 								if (jogador.getSedento() == 1) {
 									vida += (jogador.getDnAtaqueEspecial()*0.1);
+									btnImgInim[1].setVisible(true);
+									btnImgInim[1].setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\efeitoSedento.png"));
+									btnImgInim[1].setToolTipText("Sedento - Caçador recupera 10% do dano");
+								}
+								if(jogador.getAtordoamento() == 1) {
+									btnImgInim[1].setVisible(true);
+									btnImgInim[1].setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\efeitoAtordoamento.png"));
+									btnImgInim[1].setToolTipText("Atordoamento - Inimigo sem ação na próxima rodada");
 								}
 								if (vidaInimigo < 0) {
 									vidaInimigo = 0;
@@ -225,6 +238,7 @@ public class Batalhas {
 									escolheu = false;
 									//JButtonsAtaq[0].setText("3");
 									jogador.setOpcaoAtaque(3);
+									lblAtaq[0].setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\aguardaAtaque.png"));
 									lblAtaq[1].setText("-");
 									lblAtaq[2].setText("-");
 								}
@@ -242,6 +256,7 @@ public class Batalhas {
 						try {
 							TimeUnit.SECONDS.sleep(3);
 							System.out.println("TELA - ATAQUE DO INIMIGO");
+							btnImgInim[1].setVisible(false);
 							JButtonsAtaq[0].setEnabled(true);
 								
 							//Ataque do inimigo

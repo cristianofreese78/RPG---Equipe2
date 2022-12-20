@@ -1,3 +1,5 @@
+//Classe reponsável pelos metodos e atributos relacionados as batalhas como inimigos
+//O metodo principal batalha, recebe como parâmetro todos os componentes da tela do jogo para as atualizações dinâmicas
 package Classes;
 
 import java.awt.Color;
@@ -71,14 +73,12 @@ public class BatalhasChefao {
 		if(jogador.getNome() == "Cavaleiro") {
 			//System.out.println("Efeito passivo: Sangramento");
 			//System.out.println("O chefão perdeu 5 de vida");
-			JOptionPane.showMessageDialog(null, "Efeito passivo (Sangramento): Chefão sofreu 5 de dano", null,1);
 			jogador.setSangramento(1);
 			return vidaInimigo -= jogador.getDnAtaqueEspecial();
 		}else if(jogador.getNome() == "Samurai") {
 			if(numeroEscolhido <= 25) {
 			//System.out.println("O Samurai acertou um ataque crítico ! ");
 			//System.out.println("Dano: "+jogador.getDnAtaqueEspecial()*2);
-			JOptionPane.showMessageDialog(null, "Ataque crítico: ! Chefão sofreu dano duplo", null,1);
 			jogador.setCritico(1);
 			return critico = 1;
 			}else{
@@ -88,7 +88,6 @@ public class BatalhasChefao {
 			if(numeroEscolhido <= 25) {
 			//System.out.println("O Monge acertou um atordoamento !");
 			//System.out.println("O Chefão não atacará na próxima rodada");
-			JOptionPane.showMessageDialog(null, "Atordoamento: ! Chefão sem ação na próxima rodada", null,1);
 			jogador.setAtordoamento(1);
 			return atordoamento;
 			}else {
@@ -98,7 +97,6 @@ public class BatalhasChefao {
 			jogador.setSedento(1);
 			//System.out.println("Efeito passivo: Sedento por luta");
 			//System.out.println("O Caçador recupera 10% do dano causado")
-			JOptionPane.showMessageDialog(null, "Atordoamento (Sedento por luta): O Caçador recupera 10% do dano", null,1);
 			return vida += (jogador.getDnAtaqueEspecial()*0.20);
 			
 		}
@@ -213,12 +211,26 @@ public class BatalhasChefao {
 								jogador.setMpJogador(mpAtual);
 								if (jogador.getCritico() == 1) {
 									vidaChefao -= jogador.getDnAtaqueEspecial();
+									btnImgInim[1].setVisible(true);
+									btnImgInim[1].setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\efeitoCritico.png"));
+									btnImgInim[1].setToolTipText("Crítico - Inimigo sofreu dano duplo");
 								}
 								if (jogador.getSangramento() == 1) {
 									vidaChefao -= 5;
+									btnImgInim[1].setVisible(true);
+									btnImgInim[1].setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\efeitoSangramento.png"));
+									btnImgInim[1].setToolTipText("Sangramento - Inimigo sofreu 5 de dano");
 								}
 								if (jogador.getSedento() == 1) {
 									vida += (jogador.getDnAtaqueEspecial()*0.1);
+									btnImgInim[1].setVisible(true);
+									btnImgInim[1].setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\efeitoSedento.png"));
+									btnImgInim[1].setToolTipText("Sedento - Caçador recupera 10% do dano");
+								}
+								if(jogador.getAtordoamento() == 1) {
+									btnImgInim[1].setVisible(true);
+									btnImgInim[1].setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\efeitoAtordoamento.png"));
+									btnImgInim[1].setToolTipText("Atordoamento - Inimigo sem ação na próxima rodada");
 								}
 								if (vidaChefao < 0) {
 									vidaChefao = 0;
@@ -238,6 +250,7 @@ public class BatalhasChefao {
 									escolheu = false;
 									//JButtonsAtaq[0].setText("3");
 									jogador.setOpcaoAtaque(3);
+									lblAtaq[0].setIcon(new ImageIcon("C:\\RPG---Equipe2\\src\\Img\\aguardaAtaque.png"));
 									lblAtaq[1].setText("-");
 									lblAtaq[2].setText("-");
 								}
@@ -255,6 +268,7 @@ public class BatalhasChefao {
 						try {
 							TimeUnit.SECONDS.sleep(3);
 							System.out.println("TELA - ATAQUE DO CHEFAO");
+							btnImgInim[1].setVisible(false);
 							JButtonsAtaq[0].setEnabled(true);
 								
 							//Ataque do inimigo
@@ -396,189 +410,4 @@ public class BatalhasChefao {
 		lblAtaq[1].setText("-");
 		lblAtaq[2].setText("-");
 	}	//Fim método batalha	
-}	//Fim classe Batalha
-		
-/*		
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
-		Scanner scan = new Scanner(System.in);
-		int vida = jogador.getPtsVida();
-		int mpAtual = jogador.getMpJogador();
-		int exp = jogador.getPtsExperiencia();
-		int nivel = jogador.getNvlJogador();
-		int qtdPocao = jogador.getPocao();
-		int vidaChefao = chefao.getPtsVida();
-		int expParaNivel = (int) Math.floor(100 * Math.pow(nivel, 1.5));
-		int numeroEscolhido = calcularChance();
-		
-		int eventos = numeroClima();
-		int ataqueChefao = gerador();
-		int mpGasto = 0;
-		int danoSofrido = 0;
-		int critico = 0;
-		boolean flag = true;
-		
-		System.out.println("Você está enfrentando um chefão. Boa sorte!");
-		System.out.println("----------------A vida do jogador é: "+vida);
-		System.out.println("----------------O Mp do jogador é: "+jogador.getMpJogador());
-		System.out.println("----------------O Nível do jogador é: "+nivel);
-		System.out.println("----------------O nome do Chefão é é: "+chefao.getNome());
-		System.out.println("----------------A vida do "+chefao.getNome()+" é: "+chefao.getPtsVida());
-		while(vida > 0 && vidaChefao > 0 && jogador.getPtsVida()>0) {
-			jogador.setAtordoamento(0);
-			jogador.setCritico(0);
-			jogador.setSangramento(0);
-			jogador.setSedento(0);
-			jogador.setMpJogador(mpAtual);
-			
-			System.out.println("(1) Aperte 1 para ataque básico (2) Aperte 2 para ataque especial: ");
-			int escolherAtaque = scan.nextInt();
-			switch(escolherAtaque) {
-			case 1: {
-				vidaChefao -= jogador.getDnAtaqueBasico();
-				chefao.setPtsVida(vidaChefao);
-				System.out.println("Você atacou com: Ataque Básico\nDano: "+ jogador.getDnAtaqueBasico());
-				if (vidaChefao < 0) {
-					vidaChefao = 0;
-				}
-				System.out.println("Vida do chefão: "+ vidaChefao);
-				flag = true;
-				jogador.setAtordoamento(0);
-				break;
-			}
-			case 2: {
-			if(jogador.getMpJogador() > 0) {
-				
-				vidaChefao -= jogador.getDnAtaqueEspecial(); 
-				mpAtual -= 1;
-				System.out.println("Você atacou com: Ataque Especial\nDano: "+ jogador.getDnAtaqueEspecial());
-				
-				numeroEscolhido = calcularChance();
-				int passiva = passivas(jogador,chefao,numeroEscolhido,jogador.getAtordoamento(),critico);
-				System.out.println("MP: " +mpAtual);
-				jogador.setMpJogador(mpAtual);
-				if (jogador.getCritico() == 1) {
-					vidaChefao -= jogador.getDnAtaqueEspecial();
-				}
-				if (jogador.getSangramento() == 1) {
-					vidaChefao -= 5;
-				}
-				if (jogador.getSedento() == 1) {
-					vida += (jogador.getDnAtaqueEspecial()*0.1);
-				}
-				if (vidaChefao < 0) {
-					vidaChefao = 0;
-				}
-				System.out.println("Vida do chefão: "+ vidaChefao);
-				mpGasto += 1;
-				flag = true;
-				break;
-			}else {
-				System.out.println("Você não MP suficiente!");
-				flag = false;
-				break;
-			}
-			}
-			default: {
-				System.out.println("Opção Inválida");
-				flag = false;
-				break;
-				
-			}
-			}
-		
-			if (vidaChefao > 0 && flag == true && jogador.getAtordoamento() == 0) {
-				switch(ataqueChefao) { 
-				case 1: {
-					System.out.println("O Chefão atacou com um ataque básico");
-					vida -= chefao.getDnAtaqueBasico();
-					danoSofrido += chefao.getDnAtaqueBasico();
-					System.out.println("Vida do jogador: "+vida);
-					if(chefao.getNome() == "Rei Esqueleto") {
-						String passivarei = passivaReiEsqueleto(chefao);
-					}
-					break;
-				}
-				case 2: {
-					System.out.println("O Chefão atacou com um ataque especial");
-					vida -= chefao.getDnAtaqueEspecial();
-					danoSofrido += chefao.getDnAtaqueEspecial();
-					System.out.println("Vida do jogador: "+vida);
-					if(chefao.getNome() == "Rei Esqueleto") {
-						String passivarei = passivaReiEsqueleto(chefao);
-					}
-					break;
-				}
-				}
-			}
-		}
-		if(vida > 0) {
-		mpAtual -= mpGasto;
-		exp += 150;
-		System.out.println("Parabéns, você derrotou o chefão!");
-		System.out.println("O dano sofrido foi de: "+danoSofrido);
-		System.out.println("Sua Experiência após a batalha: "+exp);
-		System.out.println("Você gastou: "+mpGasto+" MP nesta batalha");
-		jogador.setPtsVida(vida);
-		jogador.setPtsExperiencia(exp);
-		numeroEscolhido = calcularChance();
-		if(numeroEscolhido <= 20) {
-			System.out.println("Você ganhou uma poção de cura!");
-			qtdPocao += 1;
-			jogador.setPocao(qtdPocao);
-		}
-
-		if (eventos == 1) {
-			jogador.setPtsVida(jogador.getPtsVida()-10);
-		}
-		if(exp >= expParaNivel) {
-			System.out.println("Parabéns você evoluiu de nível !");
-			nivel += 1;
-			jogador.setPtsVida((int) (jogador.getPtsVida()* 1.1 + (nivel*1.5)));
-			jogador.setMpJogador(jogador.getMpJogador()+2);
-			jogador.setDnAtaqueBasico((int)(jogador.getDnAtaqueBasico()* 1.1 + (nivel*1.5)));
-			jogador.setDnAtaqueEspecial((int)(jogador.getDnAtaqueEspecial()* 1.1 + (nivel*1.5)));
-			System.out.println("Nível: "+nivel);
-			jogador.setNvlJogador(nivel);
-		}
-		flag = false;
-		while(flag == false && qtdPocao > 0) {
-		System.out.println("Deseja utilizar uma poção de cura? Recupera 20 de vida\n1 para sim e 2 para não");
-		int escolherPocao = scan.nextInt();
-		switch(escolherPocao) {
-		case 1:{
-			System.out.println("Você escolheu utilizar uma poção");
-			vida += 20;
-			System.out.println("Vida do jogador: "+vida);
-			jogador.setPtsVida(vida);
-			qtdPocao -= 1;
-			jogador.setPocao(qtdPocao);
-			flag = true;
-			break;
-			}
-		
-		case 2:{
-			System.out.println("Você escolheu não utilizar uma poção");
-			flag = true;
-			break;
-		}
-		default: {
-			System.out.println("Opção inválida");
-			break;
-		}
-		}
-		
-		}
-		}
-		if(vida<= 0) {
-			jogador.setPtsVida(vida);
-			System.out.println("Você morreu!");
-		}
-			}
-}
-			
-		
-		
-		
-	
-
-*/
+}	//Fim classe Batalha Chefão	

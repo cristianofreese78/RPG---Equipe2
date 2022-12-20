@@ -1,3 +1,5 @@
+//Tela de Introdução - O texto relacionado a história do jogo sobe dinamicamente na tela com o emprego de uma thread
+
 package br.telas;
 
 import java.awt.Color;
