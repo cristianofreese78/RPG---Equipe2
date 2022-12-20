@@ -80,7 +80,7 @@ public class ListasElementos {
 		this.listaChefao.add(new Chefao("Bárbaro", 80, 30, "Padrão", 40, "C:\\RPG---Equipe2\\src\\Img\\escolhaBarbaro.png"));
 		this.listaChefao.add(new Chefao("Ancião", 120, 40, "Padrão", 55, "C:\\RPG---Equipe2\\src\\Img\\escolhaAnciao.png"));
 		//Efeito : PASSIVA- FURIA DO REI - A cada turno o REI ESQUELETO AUMENTA EM 10% o seu dano.
-		this.listaChefao.add(new Chefao("Rei Esqueleto", 160, 50, "Passiva Fúria do Rei", 60, "C:\\RPG---Equipe2\\src\\Img\\escolhaReiEsqueleto.png"));
+		this.listaChefao.add(new Chefao("Rei Esqueleto", 350, 60, "Passiva Fúria do Rei", 70, "C:\\RPG---Equipe2\\src\\Img\\escolhaReiEsqueleto.png"));
 	}
 	
 	//Cadastro de jogadores no array list listaJogador utilizando construtor
@@ -95,7 +95,7 @@ public class ListasElementos {
 		this.listaJogador.add(new Jogador("Monge", 90, 12, "Ataque Concentrado", 22, 0, 1, 20,0,0,1,0,0,
 										  "C:\\RPG---Equipe2\\src\\Img\\escolhaMonge.png"));			
 		//Efeito : Recuperação de vida - Recupera 10% do dano causado.			
-		this.listaJogador.add(new Jogador("Caçador", 95, 11, "Sedento por Luta", 55, 0, 1, 20,0,0,0,0,1,
+		this.listaJogador.add(new Jogador("Caçador", 95, 11, "Sedento por Luta", 25, 0, 1, 20,0,0,0,0,1,
 										  "C:\\RPG---Equipe2\\src\\Img\\escolhaCacador.png"));			
 	}
 }
