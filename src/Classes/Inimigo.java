@@ -1,3 +1,4 @@
+//Classe responsável pelos atributos do inimigo herdando os atributos comuns da classe elementos
 package Classes;
 
 import javax.swing.ImageIcon;
@@ -20,8 +21,8 @@ public class Inimigo extends Elementos{
 	}
 	
 	@Override
+	//Formata os dados do objeto em um buffer String
 	public String toString() {
-		
 		StringBuffer stringBuffer = new StringBuffer();
 		stringBuffer.append("\nNome: ");
 		stringBuffer.append(this.getNome());
@@ -32,6 +33,7 @@ public class Inimigo extends Elementos{
 		return stringBuffer.toString();
 	}
 	
+	//Atualiza (2) ou exibe (1) inicialmente na tela do jogo os dados do inimigo atual.
 	public void atualizaTelaDadosInimigo(JLabel[] lbl, JProgressBar[] pgr, JButton[] btnImg, int opcao) {
 		switch(opcao) {
 			case 1: {
@@ -40,13 +42,10 @@ public class Inimigo extends Elementos{
 				lbl[1].setToolTipText(this.getNome().toUpperCase());		//lblImgAdversario
 				pgr[0].setMaximum(this.getPtsVida());						//progressVidaAdversario
 				pgr[0].setValue(this.getPtsVida());							//progressVidaAdversario
-				//btnImg[0].setVisible(false);								//btnPocao1Adversario
-				//btnImg[1].setVisible(false);								//btnPocao2Adversario
 			}
 			case 2: {
 				pgr[0].setValue(this.getPtsVida());							//progressVidaAdversario
 			}
 		}
 	}
-	
 }

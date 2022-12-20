@@ -1,3 +1,5 @@
+//Classe responsável pelos atributos e métodos dos personagens herdando todas os demais atributos em comum das classes
+//Elementos e AtaqueEspecial.
 package Classes;
 
 import javax.swing.ImageIcon;
@@ -93,8 +95,8 @@ public class Jogador extends AtaqueEspecial{
 		this.sedento = sedento;
 	}
 	@Override
+	//Formata os dados do objeto em um buffer String
 	public String toString() {
-		
 		StringBuffer stringBuffer = new StringBuffer();
 		stringBuffer.append("\nNome: ");
 		stringBuffer.append(this.getNome());
@@ -135,16 +137,17 @@ public class Jogador extends AtaqueEspecial{
 		else return false;
 	}
 	
+	//Atualiza (2) ou exibe (1) inicialmente na tela do jogo os dados do jogador atual.
 	public void atualizaTelaDadosJogador(JLabel[] lbl, JProgressBar[] pgr, int opcao) {
 		switch(opcao) {
 			case 1: {
-				lbl[0].setText(this.getNome());								//lblPersonagem
+				lbl[0].setText(this.getNome().toUpperCase());								//lblPersonagem
 				lbl[1].setText(Integer.toString(this.getNvlJogador()));		//lblNivelPersonagem
 				lbl[2].setText(Integer.toString(this.getMpJogador()));		//lblMPPersonagem
 				lbl[3].setText(Integer.toString(this.getPocao()));			//lblPocoes
-				lbl[4].setIcon(new ImageIcon(this.getImagem()));				//lblImgPersonagem
-				lbl[4].setToolTipText(this.getNome().toUpperCase());			//lblImgPersonagem
-				pgr[0].setMaximum(this.getPtsVida());							//progressBarVidaPersonagem
+				lbl[4].setIcon(new ImageIcon(this.getImagem()));			//lblImgPersonagem
+				lbl[4].setToolTipText(this.getNome().toUpperCase());		//lblImgPersonagem
+				pgr[0].setMaximum(this.getPtsVida());						//progressBarVidaPersonagem
 				pgr[0].setValue(this.getPtsVida());							//progressBarVidaPersonagem
 				pgr[1].setValue(this.getPtsExperiencia());							//progressExpPersonagem
 				pgr[1].setToolTipText(Integer.toString(this.getPtsExperiencia()));	//progressExpPersonagem
@@ -154,7 +157,7 @@ public class Jogador extends AtaqueEspecial{
 				lbl[2].setText(Integer.toString(this.getMpJogador()));		//lblMPPersonagem
 				lbl[3].setText(Integer.toString(this.getPocao()));			//lblPocoes
 				pgr[0].setValue(this.getPtsVida());							//progressBarVidaPersonagem
-				pgr[1].setValue(this.getPtsExperiencia());							//progressExpPersonagem
+				pgr[1].setValue(this.getPtsExperiencia());					//progressExpPersonagem
 			}
 		}
 	}
