@@ -85,7 +85,11 @@ public class ListasElementos {
 		this.listaChefao.add(new Chefao("BÁRBARO", 80, 30, "Padrão", 40, "C:\\RPG---Equipe2\\src\\Img\\escolhaBarbaro.png"));
 		this.listaChefao.add(new Chefao("ANCIÃO", 120, 40, "Padrão", 55, "C:\\RPG---Equipe2\\src\\Img\\escolhaAnciao.png"));
 		//Efeito : PASSIVA- FURIA DO REI - A cada turno o REI ESQUELETO AUMENTA EM 10% o seu dano.
+<<<<<<< HEAD
 		this.listaChefao.add(new Chefao("REI ESQUELETO", 160, 50, "Passiva Fúria do Rei", 60, "C:\\RPG---Equipe2\\src\\Img\\escolhaReiEsqueleto.png"));
+=======
+		this.listaChefao.add(new Chefao("REI ESQUELETO", 300, 50, "Passiva Fúria do Rei", 60, "C:\\RPG---Equipe2\\src\\Img\\escolhaReiEsqueleto.png"));
+>>>>>>> 4f6eb4c095513baee4c13f6581d77f3a3680ea08
 	}
 	
 	//Cadastro de jogadores no array list listaJogador utilizando construtor
